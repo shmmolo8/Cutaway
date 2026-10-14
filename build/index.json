@@ -1,0 +1,121 @@
+{
+  "components": [
+    {
+      "id": "aluminum_electrolytic_capacitor_d8",
+      "name": "Aluminium electrolytic capacitor",
+      "family": "aluminum_electrolytic_capacitor",
+      "category": "Capacitors",
+      "description": "Wound anode foil with a nanometre Al2O3 dielectric, electrolyte-soaked paper and cathode foil in a sealed aluminium can.",
+      "size": "d8",
+      "variants": {
+        "exaggerated": "models/aluminum_electrolytic_capacitor_d8_exaggerated",
+        "true_scale": "models/aluminum_electrolytic_capacitor_d8_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "axial_inductor_l11",
+      "name": "Axial inductor",
+      "family": "axial_inductor",
+      "category": "Inductors",
+      "description": "Copper winding on a ferrite drum inside a ferrite sleeve that closes the magnetic path, coated in epoxy.",
+      "size": "l11",
+      "variants": {
+        "exaggerated": "models/axial_inductor_l11_exaggerated",
+        "true_scale": "models/axial_inductor_l11_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "carbon_film_resistor_0204",
+      "name": "Carbon film resistor",
+      "family": "carbon_film_resistor",
+      "category": "Resistors",
+      "description": "Pyrolytic carbon film on a ceramic rod, spiral-cut to value, with pressed-on caps and lacquer.",
+      "size": "0204",
+      "variants": {
+        "exaggerated": "models/carbon_film_resistor_0204_exaggerated",
+        "true_scale": "models/carbon_film_resistor_0204_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "ceramic_disc_capacitor_d5",
+      "name": "Ceramic disc capacitor",
+      "family": "ceramic_disc_capacitor",
+      "category": "Capacitors",
+      "description": "High-K BaTiO3 disc with fired silver electrodes, soldered leads and an epoxy dip coat.",
+      "size": "d5",
+      "variants": {
+        "exaggerated": "models/ceramic_disc_capacitor_d5_exaggerated",
+        "true_scale": "models/ceramic_disc_capacitor_d5_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "chip_resistor_0603",
+      "name": "Chip resistor",
+      "family": "chip_resistor",
+      "category": "Resistors",
+      "description": "RuO2 film on alumina, laser-trimmed, with Ni/Sn plated terminations.",
+      "size": "0603",
+      "variants": {
+        "exaggerated": "models/chip_resistor_0603_exaggerated",
+        "true_scale": "models/chip_resistor_0603_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "inductor_0603",
+      "name": "Chip inductor",
+      "family": "inductor",
+      "category": "Inductors",
+      "description": "Printed Ag coil stacked through ferrite sheets, with 5-sided Ag/Ni/Sn terminations.",
+      "size": "0603",
+      "variants": {
+        "exaggerated": "models/inductor_0603_exaggerated",
+        "true_scale": "models/inductor_0603_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "mlcc_0603",
+      "name": "Ceramic chip capacitor (MLCC)",
+      "family": "mlcc",
+      "category": "Capacitors",
+      "description": "Interleaved Ni electrodes in BaTiO3 ceramic with 5-sided Cu/Ni/Sn terminations.",
+      "size": "0603",
+      "variants": {
+        "exaggerated": "models/mlcc_0603_exaggerated",
+        "true_scale": "models/mlcc_0603_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "potentiometer_3266w",
+      "name": "Trimmer potentiometer",
+      "family": "potentiometer",
+      "category": "Resistors",
+      "description": "Cermet track on alumina swept by a precious-metal wiper, turned through a worm gear by a 25-turn screw.",
+      "size": "3266w",
+      "variants": {
+        "exaggerated": "models/potentiometer_3266w_exaggerated",
+        "true_scale": "models/potentiometer_3266w_true_scale"
+      },
+      "default_variant": "exaggerated"
+    },
+    {
+      "id": "tantalum_capacitor_2012",
+      "name": "Tantalum capacitor",
+      "family": "tantalum_capacitor",
+      "category": "Capacitors",
+      "description": "Porous sintered tantalum anode with a nanometre Ta2O5 dielectric, MnO2 / carbon / silver cathode, moulded in epoxy.",
+      "size": "2012",
+      "variants": {
+        "exaggerated": "models/tantalum_capacitor_2012_exaggerated",
+        "true_scale": "models/tantalum_capacitor_2012_true_scale"
+      },
+      "default_variant": "exaggerated"
+    }
+  ]
+}

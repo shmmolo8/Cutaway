@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "component": {
+    "id": "tantalum_capacitor_2012",
+    "family": "tantalum_capacitor",
+    "size": "2012",
+    "name": "Tantalum capacitor",
+    "category": "Capacitors",
+    "description": "Porous sintered tantalum anode with a nanometre Ta2O5 dielectric, MnO2 / carbon / silver cathode, moulded in epoxy.",
+    "variant": "exaggerated",
+    "variants": {
+      "exaggerated": "models/tantalum_capacitor_2012_exaggerated",
+      "true_scale": "models/tantalum_capacitor_2012_true_scale"
+    },
+    "units": "mm",
+    "up": "+Z",
+    "frame": "CAD Z-up; GLB root node rotates to glTF Y-up; layer nodes are in CAD frame",
+    "bbox": [
+      [
+        -1.0,
+        -0.6,
+        0.0
+      ],
+      [
+        1.0,
+        0.6,
+        1.2
+      ]
+    ],
+    "source": "data/tantalum_capacitor_2012.yaml",
+    "levels": {
+      "pellet_x0": -0.36,
+      "pellet_x1": 0.46,
+      "stack_z_mid": 0.58,
+      "pellet_height": 0.46
+    }
+  },
+  "explode": {
+    "step_mm": 0.15
+  },
+  "layers": [
+    {
+      "id": "wire",
+      "kind": "wire",
+      "name": "Tantalum wire (+)",
+      "material": "Tantalum wire",
+      "function": "Anode lead wire, pressed into the powder before sintering; it is welded to the + lead frame.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#8F8A94",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_L",
+      "volume_mm3": 0.009542588,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 5
+      }
+    },
+    {
+      "id": "pellet",
+      "kind": "pellet",
+      "name": "Tantalum anode (porous)",
+      "material": "Sintered tantalum powder (porous)",
+      "function": "Tantalum powder pressed and sintered into a sponge: its internal surface is hundreds of times its outside. Every pore wall is anodised, so the whole sponge is one plate.",
+      "thickness_true_um": 549.928,
+      "thickness_model_um": 460.0,
+      "derived": true,
+      "color": "#6E6A73",
+      "roughness": 0.85,
+      "metalness": 0.6,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.213474562,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "oxide",
+      "kind": "oxide",
+      "name": "Ta2O5 dielectric",
+      "material": "Tantalum pentoxide (Ta2O5)",
+      "function": "Tantalum pentoxide grown by anodising (~1.8 nm per volt, ~36 nm here) on every pore wall. eps_r ~27, three times aluminium oxide. It only insulates one way: polarised.",
+      "thickness_true_um": 0.036,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#9B7FD6",
+      "roughness": 0.3,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.035023928,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "washer",
+      "kind": "washer",
+      "name": "PTFE washer",
+      "material": "PTFE washer",
+      "function": "Keeps the cathode layers from creeping up the anode wire (a short).",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#F2F0EA",
+      "roughness": 0.6,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.008317782,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "mno2",
+      "kind": "mno2",
+      "name": "MnO2 cathode",
+      "material": "Manganese dioxide (MnO2)",
+      "function": "Manganese dioxide formed inside every pore (from manganese nitrate): the real cathode plate touching the oxide. It also \"self-heals\" small oxide flaws by turning insulating.",
+      "thickness_true_um": 20.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#2E2A26",
+      "roughness": 0.9,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.064445,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "carbon",
+      "kind": "carbon",
+      "name": "Carbon layer",
+      "material": "Graphite (carbon) layer",
+      "function": "Graphite coat giving the MnO2 a low-resistance contact to the silver.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#3D3F44",
+      "roughness": 0.8,
+      "metalness": 0.2,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.074945,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "silver",
+      "kind": "silver",
+      "name": "Silver layer",
+      "material": "Silver paint",
+      "function": "Silver paint, the outer cathode skin that the frame is glued to.",
+      "thickness_true_um": 15.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#C7CBD1",
+      "roughness": 0.4,
+      "metalness": 0.9,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.086195,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 4
+      }
+    },
+    {
+      "id": "silver_epoxy",
+      "kind": "silver_epoxy",
+      "name": "Silver epoxy",
+      "material": "Silver-filled epoxy",
+      "function": "Conductive adhesive bonding the silvered pellet to the - lead frame.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#A9AEB5",
+      "roughness": 0.5,
+      "metalness": 0.6,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.012,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "lead_frame_L",
+      "kind": "lead_frame",
+      "name": "Lead frame (L)",
+      "material": "Tin-plated lead frame",
+      "function": "Tin-plated metal frame, folded around the mould ends to form the solder terminations (L = + anode, R = - cathode).",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#D4D7DB",
+      "roughness": 0.4,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_L",
+      "volume_mm3": 0.098077261,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          -1
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "lead_frame_R",
+      "kind": "lead_frame",
+      "name": "Lead frame (R)",
+      "material": "Tin-plated lead frame",
+      "function": "Tin-plated metal frame, folded around the mould ends to form the solder terminations (L = + anode, R = - cathode).",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#D4D7DB",
+      "roughness": 0.4,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_R",
+      "volume_mm3": 0.11505,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          -1
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "band",
+      "kind": "band",
+      "name": "Polarity band (+)",
+      "material": "Polarity band (laser marked)",
+      "function": "Marks the + (anode) end. On tantalum the band means +; on an aluminium can the stripe means -.",
+      "thickness_true_um": 15.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#6B4A1E",
+      "roughness": 0.7,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.0084,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 8
+      }
+    },
+    {
+      "id": "mould",
+      "kind": "mould",
+      "name": "Epoxy mould",
+      "material": "Moulding epoxy",
+      "function": "Transfer-moulded epoxy body sealing the element; carries the marking.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#E2B23A",
+      "roughness": 0.6,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 1.813428879,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 7
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "plane": null,
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.8,
+          -1.3,
+          0.9
+        ]
+      }
+    },
+    {
+      "id": "longitudinal",
+      "label": "Longitudinal section (anode, wire, cathode layers)",
+      "plane": {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "point": [
+          0,
+          0,
+          0.5800000000000001
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.12
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "transverse",
+      "label": "Transverse section (pellet and its layers)",
+      "plane": {
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "point": [
+          0.05,
+          0,
+          0.5800000000000001
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          1.0,
+          -0.2,
+          0.15
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "inside",
+      "label": "Inside (mould hidden)",
+      "plane": null,
+      "explode": 0.0,
+      "hide": [
+        "mould",
+        "band"
+      ],
+      "camera": {
+        "direction": [
+          0.8,
+          -1.3,
+          0.9
+        ]
+      }
+    },
+    {
+      "id": "exploded",
+      "label": "Fully exploded",
+      "plane": null,
+      "explode": 1.0,
+      "camera": {
+        "direction": [
+          0.9,
+          -1.3,
+          0.8
+        ]
+      }
+    }
+  ],
+  "physics": {
+    "type": "electrolytic",
+    "plane": {
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "point": [
+        0,
+        0,
+        0.5800000000000001
+      ]
+    },
+    "dielectric_layer": "oxide",
+    "contacts": {
+      "positive": [
+        "wire",
+        "pellet",
+        "lead_frame_L"
+      ],
+      "negative": [
+        "mno2",
+        "carbon",
+        "silver",
+        "silver_epoxy",
+        "lead_frame_R"
+      ]
+    },
+    "electrical": {
+      "kind": "tantalum",
+      "capacitance_f": 1e-05,
+      "rated_voltage_v": 6.3,
+      "forming_voltage_v": 20,
+      "nm_per_volt": 1.8,
+      "epsilon_r": 27,
+      "leakage_cv": 0.01,
+      "esr_ohm": 6.0,
+      "gain_max": 1000,
+      "ref_length_mm": 0.9099,
+      "ref_area_mm2": 2.9568
+    },
+    "oxide_um_true": 0.036,
+    "cut_layers": [
+      "pellet",
+      "oxide",
+      "mno2",
+      "carbon",
+      "silver"
+    ],
+    "cut_color_layer": "mould",
+    "cut": {
+      "mode": "axis",
+      "center": [
+        -0.36,
+        0.0
+      ],
+      "axis": [
+        1.0,
+        0.0
+      ],
+      "r_in": 0.0,
+      "r_out": 0.91
+    },
+    "camera": {
+      "direction": [
+        0.0,
+        -1.0,
+        0.12
+      ],
+      "box": [
+        [
+          -1.0,
+          -0.6,
+          0.0
+        ],
+        [
+          1.0,
+          0.6,
+          1.2
+        ]
+      ]
+    }
+  }
+}

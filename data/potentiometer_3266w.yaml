@@ -1,0 +1,114 @@
+# Multiturn cermet trimmer potentiometer, 1/4" square, top adjust (Bourns 3266W style), 10 kOhm.
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame, KiCad THT convention): origin = pin 1, z = 0 = PCB.
+# Pins: 1 (end) at x = 0, 2 (wiper) at (-2.54, -2.54), 3 (end) at x = -5.08.
+# The element stands vertically (XZ plane) at the back; the screw on top is a worm that turns
+# a worm wheel carrying the wiper, 25 screw turns from end to end.
+
+component: potentiometer
+generator: geometry.components.potentiometer
+size: "3266w"
+display_name: Trimmer potentiometer
+category: Resistors
+description: Cermet track on alumina swept by a precious-metal wiper, turned through a worm gear by a 25-turn screw.
+reference_step: "Components/Resistors/Potentiometer/Potentiometer_Bourns_3266W_Vertical.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm
+  body: {x: [-5.895, 0.815], y: [-3.52, 0.98], z: [0.0, 7.24]}
+  wall: 0.35
+  height: 0.50                  # alumina substrate thickness (derived bulk; films grow in front of it)
+  substrate: {x: [-5.50, 0.42], y_back: 0.25, z: [0.60, 6.60]}
+  axis: {x: -2.54, z: 3.60}     # rotor axis (along y) = track centre
+  track: {r: [1.40, 2.00], from_deg: -30, to_deg: 210}   # cermet arc; pin 1 end at -30 deg
+  pad: {sector_deg: 12, link_z: [2.00, 2.40], half_width: 0.35}
+  collector: {r: [0.40, 0.90], strip_half_width: 0.25}
+  pins: {diameter: 0.46, below: 4.88, x: [0.0, -2.54, -5.08], y: [0.0, -2.54, 0.0]}
+  pin2_contact_z: 0.83          # pin 2 bends back to press on the collector strip here
+  rotor: {wheel_radius: 1.585, wheel_y: [-2.60, -1.90], shaft_radius: 0.30, notches: 36, notch: [0.12, 0.10]}
+  wiper: {thickness: 0.08, width: 0.30, r: [0.30, 2.05]}
+  screw: {x: -0.405, y: -2.25, radius: 0.50, z0: 1.20, head_radius: 0.854, head_top: 8.26, slot: [0.51, 0.40]}
+  oring: {r: [0.50, 0.75], height: 0.30}
+  turns_total: 25
+  turns_built: 12.5             # wiper position the geometry is built at
+
+no_thickness: [wiper, rotor, screw, oring, lead, housing]
+
+thickness_um:
+  track: 12
+  conductor: 12                 # = track, so the wiper bar rests on both
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.9
+
+electrical:
+  nominal_ohm: 10000            # "103"
+  rated_power_w: 0.25           # typical
+  max_working_voltage_v: 100
+
+explode:
+  step_mm: 0.60
+
+layers:
+  substrate:
+    name: Alumina substrate
+    material: alumina_96
+    function: Ceramic plate the track and conductors are printed and fired on.
+    explode: {direction: [0, 1, 0], order: 1}
+  track:
+    name: Cermet track
+    material: cermet_thick_film
+    function: >-
+      Ruthenium-oxide / glass thick film fired on the alumina: the resistive element. The
+      wiper taps it anywhere along its arc, so pin 1-2 and 2-3 split the total resistance.
+    explode: {direction: [0, 1, 0], order: 1}
+  termination:
+    name: End termination
+    material: agpd_thick_film
+    function: Silver-palladium pad joining each end of the track to its pin (wraps under the substrate).
+    explode: {direction: [0, 1, 0], order: 1}
+  collector:
+    name: Collector ring
+    material: silver_thick_film
+    function: Silver ring the wiper also slides on; its strip carries the wiper voltage to pin 2.
+    explode: {direction: [0, 1, 0], order: 1}
+  wiper:
+    name: Wiper
+    material: precious_metal_wiper
+    function: Spring contact on the rotor bridging the collector ring and the track.
+    explode: {direction: [0, -1, 0], order: 2}
+  rotor:
+    name: Rotor (worm wheel)
+    material: plastic_rotor
+    function: Worm wheel turned by the screw; carries the wiper round the track.
+    explode: {direction: [0, -1, 0], order: 3}
+  screw:
+    name: Adjustment screw (worm)
+    material: brass_screw
+    function: >-
+      Worm screw: each turn advances the wheel by one tooth, so 25 turns sweep the whole track
+      - fine, stable adjustment that vibration cannot undo.
+    explode: {direction: [0, 0, 1], order: 8}
+  oring:
+    name: O-ring seal
+    material: silicone_oring
+    function: Seals the screw so washing solvents cannot get inside.
+    explode: {direction: [0, 0, 1], order: 7}
+  lead:
+    name: Pin
+    material: tinned_wire
+    function: Tinned pins; 1 and 3 are the track ends, 2 the wiper.
+    explode: {direction: [0, 0, -1], order: 2}
+  housing:
+    name: Housing
+    material: housing_plastic_blue
+    function: Sealed plastic case.
+    explode: {direction: [0, 0, 1], order: 12}
+
+tessellation:
+  linear_deflection: 0.002
+  angular_deflection: 0.06

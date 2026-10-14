@@ -1,0 +1,567 @@
+{
+  "schema_version": 1,
+  "component": {
+    "id": "potentiometer_3266w",
+    "family": "potentiometer",
+    "size": "3266w",
+    "name": "Trimmer potentiometer",
+    "category": "Resistors",
+    "description": "Cermet track on alumina swept by a precious-metal wiper, turned through a worm gear by a 25-turn screw.",
+    "variant": "exaggerated",
+    "variants": {
+      "exaggerated": "models/potentiometer_3266w_exaggerated",
+      "true_scale": "models/potentiometer_3266w_true_scale"
+    },
+    "units": "mm",
+    "up": "+Z",
+    "frame": "CAD Z-up; GLB root node rotates to glTF Y-up; layer nodes are in CAD frame",
+    "bbox": [
+      [
+        -5.895,
+        -3.52,
+        -4.88
+      ],
+      [
+        0.815,
+        0.98,
+        8.26
+      ]
+    ],
+    "source": "data/potentiometer_3266w.yaml",
+    "levels": {
+      "axis_x": -2.54,
+      "axis_z": 3.6,
+      "film_front_y": -0.275,
+      "substrate_front_y": -0.25,
+      "wiper_deg": 90.0
+    }
+  },
+  "explode": {
+    "step_mm": 0.6
+  },
+  "layers": [
+    {
+      "id": "substrate",
+      "kind": "substrate",
+      "name": "Alumina substrate",
+      "material": "96% alumina (Al2O3)",
+      "function": "Ceramic plate the track and conductors are printed and fired on.",
+      "thickness_true_um": 500.0,
+      "thickness_model_um": 500.0,
+      "derived": true,
+      "color": "#E9E6DE",
+      "roughness": 0.85,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 17.76,
+      "explode": {
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "track",
+      "kind": "track",
+      "name": "Cermet track",
+      "material": "Cermet thick film (RuO2 / glass)",
+      "function": "Ruthenium-oxide / glass thick film fired on the alumina: the resistive element. The wiper taps it anywhere along its arc, so pin 1-2 and 2-3 split the total resistance.",
+      "thickness_true_um": 12.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#222224",
+      "roughness": 0.6,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.10681415,
+      "explode": {
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "termination_R",
+      "kind": "termination",
+      "name": "End termination (R)",
+      "material": "Silver-palladium (Ag-Pd) thick film",
+      "function": "Silver-palladium pad joining each end of the track to its pin (wraps under the substrate).",
+      "thickness_true_um": 12.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#ABA597",
+      "roughness": 0.32,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_R",
+      "volume_mm3": 0.058326861,
+      "explode": {
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "termination_L",
+      "kind": "termination",
+      "name": "End termination (L)",
+      "material": "Silver-palladium (Ag-Pd) thick film",
+      "function": "Silver-palladium pad joining each end of the track to its pin (wraps under the substrate).",
+      "thickness_true_um": 12.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#ABA597",
+      "roughness": 0.32,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_L",
+      "volume_mm3": 0.058326861,
+      "explode": {
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "collector",
+      "kind": "collector",
+      "name": "Collector ring",
+      "material": "Silver (Ag) thick film",
+      "function": "Silver ring the wiper also slides on; its strip carries the wiper voltage to pin 2.",
+      "thickness_true_um": 12.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#D3D7DD",
+      "roughness": 0.28,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "wiper",
+      "volume_mm3": 0.077447279,
+      "explode": {
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "wiper",
+      "kind": "wiper",
+      "name": "Wiper",
+      "material": "Precious-metal alloy wiper",
+      "function": "Spring contact on the rotor bridging the collector ring and the track.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#E3C77A",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "wiper",
+      "volume_mm3": 0.042,
+      "explode": {
+        "direction": [
+          0,
+          -1,
+          0
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "rotor",
+      "kind": "rotor",
+      "name": "Rotor (worm wheel)",
+      "material": "Glass-filled nylon",
+      "function": "Worm wheel turned by the screw; carries the wiper round the track.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#E8E6E0",
+      "roughness": 0.6,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 5.659772341,
+      "explode": {
+        "direction": [
+          0,
+          -1,
+          0
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "screw",
+      "kind": "screw",
+      "name": "Adjustment screw (worm)",
+      "material": "Brass screw",
+      "function": "Worm screw: each turn advances the wheel by one tooth, so 25 turns sweep the whole track - fine, stable adjustment that vibration cannot undo.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9A34E",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 6.737660156,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "order": 8
+      }
+    },
+    {
+      "id": "oring",
+      "kind": "oring",
+      "name": "O-ring seal",
+      "material": "Silicone O-ring",
+      "function": "Seals the screw so washing solvents cannot get inside.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#B33A2E",
+      "roughness": 0.8,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.294524311,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "order": 7
+      }
+    },
+    {
+      "id": "lead_R",
+      "kind": "lead",
+      "name": "Pin (R)",
+      "material": "Tinned copper-clad steel wire",
+      "function": "Tinned pins; 1 and 3 are the track ends, 2 the wiper.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9CCD0",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_R",
+      "volume_mm3": 0.906567821,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "lead_L",
+      "kind": "lead",
+      "name": "Pin (L)",
+      "material": "Tinned copper-clad steel wire",
+      "function": "Tinned pins; 1 and 3 are the track ends, 2 the wiper.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9CCD0",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_L",
+      "volume_mm3": 0.906567821,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "lead_wiper",
+      "kind": "lead",
+      "name": "Pin",
+      "material": "Tinned copper-clad steel wire",
+      "function": "Tinned pins; 1 and 3 are the track ends, 2 the wiper.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9CCD0",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "wiper",
+      "volume_mm3": 1.309144588,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "housing",
+      "kind": "housing",
+      "name": "Housing",
+      "material": "Plastic housing (polyester)",
+      "function": "Sealed plastic case.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#2F5FA8",
+      "roughness": 0.55,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 68.801890879,
+      "explode": {
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "order": 12
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "plane": null,
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.8,
+          -1.3,
+          0.9
+        ]
+      }
+    },
+    {
+      "id": "longitudinal",
+      "label": "Section through screw and rotor",
+      "plane": {
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "point": [
+          -2.54,
+          0,
+          3.6
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -0.4,
+          1.0
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "element",
+      "label": "The element (housing and rotor hidden)",
+      "plane": null,
+      "explode": 0.0,
+      "hide": [
+        "housing",
+        "rotor"
+      ],
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.15
+        ]
+      }
+    },
+    {
+      "id": "front_section",
+      "label": "Section just in front of the track",
+      "plane": {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "point": [
+          -2.54,
+          -0.315,
+          3.6
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.1
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "exploded",
+      "label": "Fully exploded",
+      "plane": null,
+      "explode": 1.0,
+      "camera": {
+        "direction": [
+          0.9,
+          -1.3,
+          0.7
+        ]
+      }
+    }
+  ],
+  "physics": {
+    "type": "rotary_track",
+    "film_layer": "track",
+    "film_y": -0.275,
+    "domain": [
+      [
+        -4.59,
+        1.55
+      ],
+      [
+        -0.49000000000000005,
+        5.6499999999999995
+      ]
+    ],
+    "contact_x": [
+      0.0,
+      0.0
+    ],
+    "center": [
+      -2.54,
+      3.6
+    ],
+    "track": {
+      "r": [
+        1.4,
+        2.0
+      ],
+      "from_deg": -30,
+      "to_deg": 210,
+      "pad_deg": 12
+    },
+    "wiper": {
+      "r": 1.7,
+      "half_width": 0.15
+    },
+    "turns": {
+      "total": 25,
+      "built": 12.5
+    },
+    "rotate": [
+      {
+        "ids": [
+          "rotor",
+          "wiper"
+        ],
+        "center": [
+          -2.54,
+          0.0,
+          3.6
+        ],
+        "plane": "xz",
+        "deg_per_turn": -9.6
+      },
+      {
+        "ids": [
+          "screw"
+        ],
+        "center": [
+          -0.405,
+          -2.25,
+          0.0
+        ],
+        "plane": "xy",
+        "deg_per_turn": 360.0
+      }
+    ],
+    "contacts": {
+      "positive": [
+        "termination_R",
+        "lead_R"
+      ],
+      "negative": [
+        "termination_L",
+        "lead_L"
+      ],
+      "wiper": [
+        "wiper",
+        "collector",
+        "lead_wiper"
+      ]
+    },
+    "thermal_layers": [
+      "substrate"
+    ],
+    "fade_layers": [
+      "housing",
+      "rotor",
+      "screw",
+      "oring"
+    ],
+    "hide_layers": [],
+    "electrical": {
+      "nominal_ohm": 10000,
+      "rated_power_w": 0.25,
+      "max_working_voltage_v": 100
+    },
+    "camera": {
+      "direction": [
+        0.0,
+        -1.0,
+        0.12
+      ],
+      "box": [
+        [
+          -5.5,
+          -0.25,
+          0.6
+        ],
+        [
+          0.42,
+          0.25,
+          6.6
+        ]
+      ]
+    }
+  }
+}

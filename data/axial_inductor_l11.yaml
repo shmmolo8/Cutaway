@@ -1,0 +1,120 @@
+# Shielded axial inductor (moulded), 11 mm x 4.5 mm, leads bent for 15.24 mm pitch, 47 µH.
+#
+# Units: lateral dimensions in mm. Axes (CAD frame, KiCad THT convention): origin = pin 1,
+# z = 0 = PCB, X = body axis, body centred at x = pitch/2 with its axis at z = 2.35.
+# Inside (inside-out): ferrite drum (post + flanges), copper winding on the post, lead-out
+# wires through notches in the flanges to steel end caps, leads welded to the caps, ferrite
+# sleeve over the flanges (the shield: it closes the magnetic path), epoxy coat, colour bands.
+
+component: axial_inductor
+generator: geometry.components.axial_inductor
+size: "l11"
+display_name: Axial inductor
+category: Inductors
+description: Copper winding on a ferrite drum inside a ferrite sleeve that closes the magnetic path, coated in epoxy.
+reference_step: "Components/Inductors/Inductor_Axial/L_Axial_L11.0mm_D4.5mm_P15.24mm_Horizontal_Fastron_MECC.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm (r = radius from the body axis, ax = axial from the body centre)
+  pitch: 15.24
+  axis_z: 2.35
+  height: 1.20                  # drum post diameter (derived bulk; nothing thin to exaggerate)
+  coat: {half_length: 5.50, r: 1.975, end_round: 1.40}
+  drum: {half_length: 4.00, flange: 0.60, flange_r: 1.40}
+  winding: {r: [0.60, 1.40], gap: 0.0}      # fills the bobbin window (sealed gaps would trap coating)
+  sleeve: {r_out: 1.85, gap: 0.15}  # epoxy-filled gap to the flange rims: sets L, delays saturation
+  cap: {thickness: 0.15}
+  leadout: {r: [0.90, 1.30], half_width: 0.12}
+  lead: {diameter: 0.70, bend_radius: 0.60, below: 3.00}
+  bands: {r_out: 2.25, width: 0.60, ax: [-1.85, -0.65, 1.65, 2.95]}   # 47 µH: yellow violet black, silver 10 %
+
+no_thickness: [winding, leadout, sleeve, cap, lead, coat, band_1, band_2, band_3, band_4]
+
+thickness_um: {}
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.9
+
+electrical:                     # drives the physics view
+  inductance_h: 47.0e-6         # marked value (yellow violet black)
+  turns: 31                     # winding (one block of N amp-turns in the solve); L ∝ N², 31 -> ~47 µH
+  mu_r: 250                     # NiZn drum and sleeve, typical initial permeability
+  dcr_ohm: 0.5                  # typical
+  rated_current_a: 0.5
+  sat_i_half_a: 2.0             # illustrative saturation curve
+  parasitic_c_f: 3.0e-12
+  filter_load_ohm: 50
+  air_margin_mm: 3.0
+
+explode:
+  step_mm: 0.60
+
+layers:
+  drum:
+    name: Ferrite drum
+    material: ferrite_nizn
+    function: >-
+      Dumbbell-shaped NiZn ferrite core: the post carries the winding and guides its flux,
+      the flanges hand the flux over to the sleeve.
+    explode: {direction: [0, 0, 0], order: 0}
+  winding:
+    name: Winding
+    material: enamelled_copper
+    function: >-
+      Enamelled copper wire wound on the post (drawn as one block of turns). L grows with
+      the square of the number of turns.
+    explode: {direction: [0, 0, 1], order: 3}
+  leadout:
+    name: Wire lead-out
+    material: enamelled_copper
+    function: Winding end led through a notch in the flange to the end cap.
+    explode: {direction: [1, 0, 0], order: 1}    # sign flipped for _L
+  cap:
+    name: End cap
+    material: steel_cap_plain
+    function: Steel cap on the drum end; the winding is soldered to it and the lead welded on.
+    explode: {direction: [1, 0, 0], order: 2}
+  lead:
+    name: Lead
+    material: tinned_wire
+    function: Tinned copper lead.
+    explode: {direction: [1, 0, 0], order: 3}
+  sleeve:
+    name: Ferrite sleeve (shield)
+    material: ferrite_nizn
+    function: >-
+      Ferrite tube resting on the flanges: the return path for the flux, so the field stays
+      inside the part instead of spreading to its neighbours (shielded).
+    explode: {direction: [0, 0, -1], order: 7}
+  coat:
+    name: Epoxy coating
+    material: coating_green
+    function: Moulded/dipped epoxy body carrying the colour code.
+    explode: {direction: [0, 0, 1], order: 9}
+  band_1:
+    name: 1st band (yellow = 4)
+    material: paint_yellow
+    function: First digit of the inductance in µH.
+    explode: {direction: [0, 0, 1], order: 10}
+  band_2:
+    name: 2nd band (violet = 7)
+    material: paint_violet
+    function: Second digit.
+    explode: {direction: [0, 0, 1], order: 10}
+  band_3:
+    name: Multiplier (black = x1)
+    material: paint_black
+    function: Multiplier - 47 x 1 µH.
+    explode: {direction: [0, 0, 1], order: 10}
+  band_4:
+    name: Tolerance (silver = 10 %)
+    material: paint_silver
+    function: Tolerance band.
+    explode: {direction: [0, 0, 1], order: 10}
+
+tessellation:
+  linear_deflection: 0.002
+  angular_deflection: 0.06

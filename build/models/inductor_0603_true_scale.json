@@ -1,0 +1,708 @@
+{
+  "schema_version": 1,
+  "component": {
+    "id": "inductor_0603",
+    "family": "inductor",
+    "size": "0603",
+    "name": "Chip inductor",
+    "category": "Inductors",
+    "description": "Printed Ag coil stacked through ferrite sheets, with 5-sided Ag/Ni/Sn terminations.",
+    "variant": "true_scale",
+    "variants": {
+      "exaggerated": "models/inductor_0603_exaggerated",
+      "true_scale": "models/inductor_0603_true_scale"
+    },
+    "units": "mm",
+    "up": "+Z",
+    "frame": "CAD Z-up; GLB root node rotates to glTF Y-up; layer nodes are in CAD frame",
+    "bbox": [
+      [
+        -0.8,
+        -0.4,
+        0.0
+      ],
+      [
+        0.8,
+        0.4,
+        0.8
+      ]
+    ],
+    "source": "data/inductor_0603.yaml",
+    "levels": {
+      "body_bottom": 0.026,
+      "body_top": 0.774,
+      "coil_bottom": 0.126,
+      "coil_top": 0.674,
+      "coil_pitch": 0.091333,
+      "coil_half_length": 0.539,
+      "coil_half_width": 0.269,
+      "body_half_length": 0.774,
+      "body_half_width": 0.374,
+      "top": 0.8
+    }
+  },
+  "explode": {
+    "step_mm": 0.14
+  },
+  "layers": [
+    {
+      "id": "coil",
+      "kind": "coil",
+      "name": "Coil",
+      "material": "Printed silver (Ag) conductor",
+      "function": "Silver traces printed on stacked ferrite sheets, each carrying part of a turn and joined through vias into one continuous helix. Current through it stores energy in the surrounding ferrite's magnetic field.",
+      "thickness_true_um": 15.0,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#E3E5E8",
+      "roughness": 0.25,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.018002367,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "ferrite",
+      "kind": "ferrite",
+      "name": "Ferrite body",
+      "material": "NiZnCu ferrite ceramic",
+      "function": "Nickel-zinc-copper ferrite sheets co-fired around the coil. Its high magnetic permeability multiplies the inductance and keeps the field inside the part.",
+      "thickness_true_um": 748.0,
+      "thickness_model_um": 748.0,
+      "derived": true,
+      "color": "#4A4845",
+      "roughness": 0.75,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.848109825,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "silver_termination_L",
+      "kind": "silver_termination",
+      "name": "Silver termination (L)",
+      "material": "Silver (Ag) thick film",
+      "function": "Silver paste dipped over each end and fired, contacting the coil lead that exits that end face.",
+      "thickness_true_um": 20.0,
+      "thickness_model_um": 20.0,
+      "derived": false,
+      "color": "#D3D7DD",
+      "roughness": 0.28,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_L",
+      "volume_mm3": 0.0288848,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "silver_termination_R",
+      "kind": "silver_termination",
+      "name": "Silver termination (R)",
+      "material": "Silver (Ag) thick film",
+      "function": "Silver paste dipped over each end and fired, contacting the coil lead that exits that end face.",
+      "thickness_true_um": 20.0,
+      "thickness_model_um": 20.0,
+      "derived": false,
+      "color": "#D3D7DD",
+      "roughness": 0.28,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_R",
+      "volume_mm3": 0.0288848,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "nickel_L",
+      "kind": "nickel",
+      "name": "Nickel barrier (L)",
+      "material": "Electroplated nickel",
+      "function": "Electroplated nickel that keeps molten solder from dissolving the silver during reflow.",
+      "thickness_true_um": 2.0,
+      "thickness_model_um": 2.0,
+      "derived": false,
+      "color": "#8B8984",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_L",
+      "volume_mm3": 0.003210208,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "nickel_R",
+      "kind": "nickel",
+      "name": "Nickel barrier (R)",
+      "material": "Electroplated nickel",
+      "function": "Electroplated nickel that keeps molten solder from dissolving the silver during reflow.",
+      "thickness_true_um": 2.0,
+      "thickness_model_um": 2.0,
+      "derived": false,
+      "color": "#8B8984",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_R",
+      "volume_mm3": 0.003210208,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "tin_L",
+      "kind": "tin",
+      "name": "Tin termination (L)",
+      "material": "Electroplated matte tin (Sn)",
+      "function": "Outer matte-tin plating that wets readily with solder and protects the nickel from oxidation.",
+      "thickness_true_um": 4.0,
+      "thickness_model_um": 4.0,
+      "derived": false,
+      "color": "#E2E4E7",
+      "roughness": 0.5,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_L",
+      "volume_mm3": 0.006600896,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "tin_R",
+      "kind": "tin",
+      "name": "Tin termination (R)",
+      "material": "Electroplated matte tin (Sn)",
+      "function": "Outer matte-tin plating that wets readily with solder and protects the nickel from oxidation.",
+      "thickness_true_um": 4.0,
+      "thickness_model_um": 4.0,
+      "derived": false,
+      "color": "#E2E4E7",
+      "roughness": 0.5,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "end_R",
+      "volume_mm3": 0.006600896,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 3
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "plane": null,
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.9,
+          -1.3,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "coil",
+      "label": "Coil only (ferrite hidden)",
+      "plane": null,
+      "explode": 0.0,
+      "hide": [
+        "ferrite"
+      ],
+      "camera": {
+        "direction": [
+          0.8,
+          -1.2,
+          1.1
+        ]
+      }
+    },
+    {
+      "id": "longitudinal",
+      "label": "Longitudinal section (turns and leads)",
+      "plane": {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "point": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.12
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "transverse",
+      "label": "Transverse section (coil window)",
+      "plane": {
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "point": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          1.0,
+          0.0,
+          0.12
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "plan_layer",
+      "label": "Plan view: through one coil sheet",
+      "plane": {
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "point": [
+          0,
+          0,
+          0.44566666666666666
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -0.001,
+          1.0
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "exploded",
+      "label": "Fully exploded",
+      "plane": null,
+      "explode": 1.0,
+      "hide": [
+        "ferrite"
+      ],
+      "camera": {
+        "direction": [
+          1.0,
+          -1.4,
+          0.9
+        ]
+      }
+    }
+  ],
+  "physics": {
+    "type": "coil_magnetics",
+    "plane": {
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "point": [
+        0,
+        0,
+        0
+      ]
+    },
+    "core_layer": "ferrite",
+    "coil_layer": "coil",
+    "domain": [
+      [
+        -1.15,
+        -0.35
+      ],
+      [
+        1.15,
+        1.15
+      ]
+    ],
+    "body": [
+      [
+        -0.774,
+        0.026
+      ],
+      [
+        0.774,
+        0.774
+      ]
+    ],
+    "cuts": [
+      {
+        "x": [
+          0.504,
+          0.5740000000000001
+        ],
+        "z": [
+          0.16416666666666666,
+          0.17916666666666667
+        ],
+        "dir": 1.0
+      },
+      {
+        "x": [
+          -0.5740000000000001,
+          -0.504
+        ],
+        "z": [
+          0.2555,
+          0.2705
+        ],
+        "dir": -1.0
+      },
+      {
+        "x": [
+          -0.5740000000000001,
+          -0.504
+        ],
+        "z": [
+          0.3468333333333333,
+          0.36183333333333334
+        ],
+        "dir": -1.0
+      },
+      {
+        "x": [
+          0.504,
+          0.5740000000000001
+        ],
+        "z": [
+          0.43816666666666665,
+          0.45316666666666666
+        ],
+        "dir": 1.0
+      },
+      {
+        "x": [
+          0.504,
+          0.5740000000000001
+        ],
+        "z": [
+          0.5295000000000001,
+          0.5445
+        ],
+        "dir": 1.0
+      },
+      {
+        "x": [
+          -0.5740000000000001,
+          -0.504
+        ],
+        "z": [
+          0.6208333333333333,
+          0.6358333333333333
+        ],
+        "dir": -1.0
+      },
+      {
+        "x": [
+          0.504,
+          0.5740000000000001
+        ],
+        "z": [
+          0.2555,
+          0.36183333333333334
+        ],
+        "dir": 1.0
+      },
+      {
+        "x": [
+          -0.5740000000000001,
+          -0.504
+        ],
+        "z": [
+          0.43816666666666665,
+          0.5445
+        ],
+        "dir": -1.0
+      }
+    ],
+    "coil_path": [
+      [
+        -0.774,
+        0.0,
+        0.171667
+      ],
+      [
+        -0.539,
+        0.0,
+        0.171667
+      ],
+      [
+        -0.539,
+        -0.269,
+        0.171667
+      ],
+      [
+        0.539,
+        -0.269,
+        0.171667
+      ],
+      [
+        0.539,
+        0.269,
+        0.171667
+      ],
+      [
+        -0.0,
+        0.269,
+        0.171667
+      ],
+      [
+        -0.0,
+        0.269,
+        0.263
+      ],
+      [
+        -0.0,
+        0.269,
+        0.263
+      ],
+      [
+        -0.539,
+        0.269,
+        0.263
+      ],
+      [
+        -0.539,
+        -0.269,
+        0.263
+      ],
+      [
+        0.539,
+        -0.269,
+        0.263
+      ],
+      [
+        0.539,
+        0.0,
+        0.263
+      ],
+      [
+        0.539,
+        0.0,
+        0.354333
+      ],
+      [
+        0.539,
+        0.0,
+        0.354333
+      ],
+      [
+        0.539,
+        0.269,
+        0.354333
+      ],
+      [
+        -0.539,
+        0.269,
+        0.354333
+      ],
+      [
+        -0.539,
+        -0.269,
+        0.354333
+      ],
+      [
+        -0.0,
+        -0.269,
+        0.354333
+      ],
+      [
+        -0.0,
+        -0.269,
+        0.445667
+      ],
+      [
+        -0.0,
+        -0.269,
+        0.445667
+      ],
+      [
+        0.539,
+        -0.269,
+        0.445667
+      ],
+      [
+        0.539,
+        0.269,
+        0.445667
+      ],
+      [
+        -0.539,
+        0.269,
+        0.445667
+      ],
+      [
+        -0.539,
+        -0.0,
+        0.445667
+      ],
+      [
+        -0.539,
+        -0.0,
+        0.537
+      ],
+      [
+        -0.539,
+        -0.0,
+        0.537
+      ],
+      [
+        -0.539,
+        -0.269,
+        0.537
+      ],
+      [
+        0.539,
+        -0.269,
+        0.537
+      ],
+      [
+        0.539,
+        0.269,
+        0.537
+      ],
+      [
+        -0.0,
+        0.269,
+        0.537
+      ],
+      [
+        -0.0,
+        0.269,
+        0.628333
+      ],
+      [
+        -0.0,
+        0.269,
+        0.628333
+      ],
+      [
+        -0.539,
+        0.269,
+        0.628333
+      ],
+      [
+        -0.539,
+        -0.269,
+        0.628333
+      ],
+      [
+        0.539,
+        -0.269,
+        0.628333
+      ],
+      [
+        0.539,
+        0.0,
+        0.628333
+      ],
+      [
+        0.774,
+        0.0,
+        0.628333
+      ]
+    ],
+    "coil_depth": 0.6080000000000001,
+    "turns": 4.5,
+    "contacts": {
+      "positive": [
+        "silver_termination_L",
+        "nickel_L",
+        "tin_L"
+      ],
+      "negative": [
+        "silver_termination_R",
+        "nickel_R",
+        "tin_R"
+      ]
+    },
+    "electrical": {
+      "mu_r": 150,
+      "inductance_h": 1e-06,
+      "dcr_ohm": 0.3,
+      "rated_current_a": 0.15,
+      "sat_i_half_a": 0.35,
+      "parasitic_c_f": 2.5e-12,
+      "filter_load_ohm": 50,
+      "air_margin_mm": 0.35
+    },
+    "camera": {
+      "direction": [
+        0.0,
+        -1.0,
+        0.18
+      ]
+    }
+  }
+}

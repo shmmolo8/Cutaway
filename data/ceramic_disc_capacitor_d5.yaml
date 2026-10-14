@@ -1,0 +1,91 @@
+# Ceramic disc capacitor, 5 mm disc, 2.5 mm thick (coated), radial leads at 5.00 mm pitch.
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame, KiCad THT convention): origin = pin 1, z = 0 = PCB surface.
+# X = lead to lead (pin 2 at +X), Y = disc axis (electrode faces at -Y / +Y), Z = up.
+
+component: ceramic_disc_capacitor
+generator: geometry.components.ceramic_disc_capacitor
+size: "d5"
+display_name: Ceramic disc capacitor
+category: Capacitors
+description: High-K BaTiO3 disc with fired silver electrodes, soldered leads and an epoxy dip coat.
+reference_step: "Components/Capacitors/Ceramic Disc/C_Disc_D5.0mm_W2.5mm_P5.00mm.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm
+  diameter: 5.00                # coated body
+  thickness: 2.50               # coated body
+  coat_round_radius: 1.00       # edge rounding of the coated body
+  body_bottom: 0.10             # coated body above the PCB
+  disc_diameter: 4.20           # ceramic disc
+  electrode_diameter: 3.60      # silver on each face
+  height: 0.37                  # ceramic + both electrodes (fixed stack; the ceramic is derived)
+  pitch: 5.00
+  lead_diameter: 0.50
+  lead_inset: 1.00              # lead on the face runs this far inside the disc centre line
+  lead_kink: [0.10, 0.80, 2.00] # z: leave the pin line, reach the face line, reach the face position
+  lead_top: 3.40                # z of the lead end on the face
+  lead_below: 2.00              # below the PCB surface
+  solder_gap: 0.03              # solder between electrode face and lead
+  solder_z: [-0.50, 0.70]       # solder joint along the lead, from the disc centre
+  solder_half_width: 0.35
+
+no_thickness: [lead, solder, coating]   # sized by dimensions, not film thicknesses
+
+thickness_um:
+  electrode: 10
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.80  # ceramic must remain >= this fraction of the stack
+
+electrical:                     # drives the physics view
+  epsilon_r: 3700               # high-K class 2 (Z5U/Y5V-type BaTiO3), typical
+  rated_voltage_v: 50
+  capacitance_f: 1.0e-9         # "102" marking
+  dc_bias_e_half_v_per_um: 2.0  # illustrative: field at which eps_r halves
+  ac: {esl_h: 5.0e-9, esr_ohm: 0.3, filter_source_ohm: 1.0}   # typical, leads included
+
+explode:
+  step_mm: 0.60
+
+layers:
+  ceramic:
+    name: Ceramic disc
+    material: batio3_high_k
+    function: >-
+      The dielectric. C = eps0 * eps_r * A / d: a high-K barium titanate (eps_r in the
+      thousands) lets a small, fairly thick disc reach nanofarads.
+    explode: {direction: [0, 0, 0], order: 0}
+  electrode:
+    name: Silver electrode
+    material: silver_fired
+    function: >-
+      Silver paste fired onto each face: the two capacitor plates. Their overlap area A,
+      across the disc thickness d, sets the capacitance.
+    explode: {direction: [0, 1, 0], order: 1}    # sign flipped for _L (it is on the -Y face)
+  solder:
+    name: Solder joint
+    material: solder_snpb
+    function: Joins the lead to the electrode along the face.
+    explode: {direction: [0, 1, 0], order: 2}
+  lead:
+    name: Lead wire
+    material: tinned_wire
+    function: >-
+      Tinned wire: runs up the electrode face (soldered), then kinks out to the 5 mm pitch.
+    explode: {direction: [0, 1, 0], order: 3}
+  coating:
+    name: Epoxy coating
+    material: epoxy_dip_orange
+    function: >-
+      Dipped epoxy (or phenolic) coat: insulates the electrodes, seals out moisture, and
+      carries the printed value.
+    explode: {direction: [0, 0, 1], order: 9}
+
+tessellation:
+  linear_deflection: 0.002
+  angular_deflection: 0.06

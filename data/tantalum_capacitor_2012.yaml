@@ -1,0 +1,131 @@
+# Moulded tantalum capacitor (MnO2), EIA 2012-12 (Kemet case R), 10 µF 6.3 V.
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame): origin = footprint centre, z = 0 = PCB. Pin 1 = anode (+) at -X.
+
+component: tantalum_capacitor
+generator: geometry.components.tantalum_capacitor
+size: "2012"
+display_name: Tantalum capacitor
+category: Capacitors
+description: Porous sintered tantalum anode with a nanometre Ta2O5 dielectric, MnO2 / carbon / silver cathode, moulded in epoxy.
+reference_step: "Components/Capacitors/Tantalum/CP_EIA-2012-12_Kemet-R.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm
+  length: 2.00                  # over the terminations
+  width: 1.20                   # mould
+  body_top: 1.20
+  mould_x: 0.90                 # mould half-length
+  mould_bottom: 0.10
+  stack: {x: [-0.45, 0.55], y: 0.38, z: [0.26, 0.90]}   # pellet + all cathode layers (fixed)
+  height: 0.64                  # = stack height; the pellet (derived) gets what the layers leave
+  wire_diameter: 0.15
+  wire_embed: 0.30              # wire pressed into the pellet
+  wire_end_x: -0.60
+  washer: {half: 0.15, out: 0.04}   # PTFE washer: half-size around the wire, extent out of the stack
+  term: {thickness: 0.10, half_width: 0.45, height: 0.505, foot: 0.50}  # external lead frame
+  anode_strip: {x_in: -0.55, thickness: 0.08, half_width: 0.30}
+  cathode_strip: {x_in: 0.20, z: [0.12, 0.20], half_width: 0.30}
+  silver_epoxy: {x: [0.10, 0.50], half_width: 0.25}
+  band: {x: [-0.90, -0.62], depth: 0.04}   # + band printed into the mould top at the anode end
+
+no_thickness: [wire, washer, lead_frame, silver_epoxy, mould]
+
+thickness_um:
+  oxide: 0.036                  # ~1.8 nm per forming volt x 20 V
+  mno2: 20
+  carbon: 10
+  silver: 15
+  band: 15
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.60
+
+electrical:                     # drives the physics view (computed, see the HUD)
+  kind: tantalum
+  capacitance_f: 10.0e-6
+  rated_voltage_v: 6.3
+  forming_voltage_v: 20         # ~3x rated: tantalum is formed far above its rating
+  nm_per_volt: 1.8
+  epsilon_r: 27                 # Ta2O5, typical
+  leakage_cv: 0.01
+  esr_ohm: 6.0                  # MnO2 cathode, typical at 100 kHz
+  gain_max: 1000
+
+explode:
+  step_mm: 0.15
+
+layers:
+  wire:
+    name: Tantalum wire (+)
+    material: tantalum_wire
+    function: >-
+      Anode lead wire, pressed into the powder before sintering; it is welded to the + lead frame.
+    explode: {direction: [-1, 0, 0], order: 5}
+  pellet:
+    name: Tantalum anode (porous)
+    material: tantalum_sintered
+    function: >-
+      Tantalum powder pressed and sintered into a sponge: its internal surface is hundreds of
+      times its outside. Every pore wall is anodised, so the whole sponge is one plate.
+    explode: {direction: [0, 0, 0], order: 0}
+  oxide:
+    name: Ta2O5 dielectric
+    material: tantalum_oxide
+    function: >-
+      Tantalum pentoxide grown by anodising (~1.8 nm per volt, ~36 nm here) on every pore wall.
+      eps_r ~27, three times aluminium oxide. It only insulates one way: polarised.
+    explode: {direction: [0, 0, 1], order: 1}
+  washer:
+    name: PTFE washer
+    material: ptfe_washer
+    function: Keeps the cathode layers from creeping up the anode wire (a short).
+    explode: {direction: [-1, 0, 0], order: 3}
+  mno2:
+    name: MnO2 cathode
+    material: mno2_cathode
+    function: >-
+      Manganese dioxide formed inside every pore (from manganese nitrate): the real cathode
+      plate touching the oxide. It also "self-heals" small oxide flaws by turning insulating.
+    explode: {direction: [0, 0, 1], order: 2}
+  carbon:
+    name: Carbon layer
+    material: graphite_layer
+    function: Graphite coat giving the MnO2 a low-resistance contact to the silver.
+    explode: {direction: [0, 0, 1], order: 3}
+  silver:
+    name: Silver layer
+    material: silver_paint
+    function: Silver paint, the outer cathode skin that the frame is glued to.
+    explode: {direction: [0, 0, 1], order: 4}
+  silver_epoxy:
+    name: Silver epoxy
+    material: silver_epoxy
+    function: Conductive adhesive bonding the silvered pellet to the - lead frame.
+    explode: {direction: [0, 0, -1], order: 2}
+  lead_frame:
+    name: Lead frame
+    material: lead_frame_tinned
+    function: >-
+      Tin-plated metal frame, folded around the mould ends to form the solder terminations
+      (L = + anode, R = - cathode).
+    explode: {direction: [1, 0, -1], order: 3}   # sign flipped for _L
+  band:
+    name: Polarity band (+)
+    material: marking_brown
+    function: >-
+      Marks the + (anode) end. On tantalum the band means +; on an aluminium can the stripe means -.
+    explode: {direction: [0, 0, 1], order: 8}
+  mould:
+    name: Epoxy mould
+    material: mould_epoxy_yellow
+    function: Transfer-moulded epoxy body sealing the element; carries the marking.
+    explode: {direction: [0, 0, 1], order: 7}
+
+tessellation:
+  linear_deflection: 0.002
+  angular_deflection: 0.06

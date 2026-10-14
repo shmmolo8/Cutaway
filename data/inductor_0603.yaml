@@ -1,0 +1,94 @@
+# Multilayer ferrite chip inductor, 0603 (1608 metric).
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame): X = length (terminations at +/-X), Y = width, Z = up (coil axis),
+# origin = footprint centre, z = 0 = PCB surface (underside of the tin).
+
+component: inductor
+generator: geometry.components.inductor
+size: "0603"
+display_name: Chip inductor
+category: Inductors
+description: Printed Ag coil stacked through ferrite sheets, with 5-sided Ag/Ni/Sn terminations.
+reference_step: "Components/Inductors/Inductor_SMD/L_0603_1608Metric.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm, outer nominal (incl. terminations)
+  length: 1.60
+  width: 0.80
+  height: 0.80
+  band_length: 0.30             # termination band on top/bottom/sides, from the outer end
+
+coil:                           # mm, never exaggerated
+  layers: 6                     # printed sheets, one partial turn each
+  turn_per_layer: 0.75          # 6 x 0.75 = 4.5 turns; must end half a turn from the start
+  trace_width: 0.07
+  cover_thickness: 0.10         # ferrite above/below the coil
+  end_margin: 0.20              # ferrite between coil loop and each end face
+  side_margin: 0.07             # ferrite between coil loop and each side face
+
+thickness_um:                   # true (physical) thicknesses
+  coil: 15
+  silver_termination: 20
+  nickel: 2
+  tin: 4
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 40
+  min_substrate_fraction: 0.40  # ferrite body must remain >= this fraction of H
+
+electrical:                     # physics view; typical 0603 1 uH multilayer ferrite inductor
+  mu_r: 150                     # NiZnCu ferrite relative permeability (low field)
+  inductance_h: 1.0e-6
+  dcr_ohm: 0.3                  # DC resistance of the coil
+  rated_current_a: 0.15
+  sat_i_half_a: 0.35            # illustrative saturation: L_eff = L / (1 + (I / I_half)^2)
+  parasitic_c_f: 2.5e-12        # turn-to-turn capacitance -> self-resonance ~100 MHz
+  filter_load_ohm: 50           # example: series choke feeding a 50 ohm load
+  air_margin_mm: 0.35           # air solved around the part (field leaving the ferrite)
+
+explode:
+  step_mm: 0.14
+
+tessellation:
+  linear_deflection: 0.0005
+  angular_deflection: 0.1
+
+layers:
+  coil:
+    name: Coil
+    material: silver_coil
+    function: >-
+      Silver traces printed on stacked ferrite sheets, each carrying part of a turn and joined
+      through vias into one continuous helix. Current through it stores energy in the
+      surrounding ferrite's magnetic field.
+    explode: {direction: [0, 0, 0], order: 0}
+  ferrite:
+    name: Ferrite body
+    material: ferrite_nizncu
+    function: >-
+      Nickel-zinc-copper ferrite sheets co-fired around the coil. Its high magnetic
+      permeability multiplies the inductance and keeps the field inside the part.
+    explode: {direction: [0, 0, 0], order: 0}
+  silver_termination:
+    name: Silver termination
+    material: silver_thick_film
+    function: >-
+      Silver paste dipped over each end and fired, contacting the coil lead that exits
+      that end face.
+    explode: {direction: [1, 0, 0], order: 1}   # sign flipped for _L
+  nickel:
+    name: Nickel barrier
+    material: nickel_plated
+    function: >-
+      Electroplated nickel that keeps molten solder from dissolving the silver during reflow.
+    explode: {direction: [1, 0, 0], order: 2}
+  tin:
+    name: Tin termination
+    material: tin_matte
+    function: >-
+      Outer matte-tin plating that wets readily with solder and protects the nickel from
+      oxidation.
+    explode: {direction: [1, 0, 0], order: 3}

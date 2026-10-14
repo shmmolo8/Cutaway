@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "component": {
+    "id": "aluminum_electrolytic_capacitor_d8",
+    "family": "aluminum_electrolytic_capacitor",
+    "size": "d8",
+    "name": "Aluminium electrolytic capacitor",
+    "category": "Capacitors",
+    "description": "Wound anode foil with a nanometre Al2O3 dielectric, electrolyte-soaked paper and cathode foil in a sealed aluminium can.",
+    "variant": "exaggerated",
+    "variants": {
+      "exaggerated": "models/aluminum_electrolytic_capacitor_d8_exaggerated",
+      "true_scale": "models/aluminum_electrolytic_capacitor_d8_true_scale"
+    },
+    "units": "mm",
+    "up": "+Z",
+    "frame": "CAD Z-up; GLB root node rotates to glTF Y-up; layer nodes are in CAD frame",
+    "bbox": [
+      [
+        -1.5,
+        -4.0,
+        -2.0
+      ],
+      [
+        6.5,
+        4.0,
+        8.0
+      ]
+    ],
+    "source": "data/aluminum_electrolytic_capacitor_d8.yaml",
+    "levels": {
+      "axis_x": 2.5,
+      "winding_r0": 0.750175,
+      "foil_z0": 2.7,
+      "foil_z1": 7.15,
+      "separator_gap": 0.08665,
+      "can_radius": 3.9,
+      "can_top": 7.9
+    }
+  },
+  "explode": {
+    "step_mm": 0.8
+  },
+  "layers": [
+    {
+      "id": "anode_foil",
+      "kind": "anode_foil",
+      "name": "Anode foil (+)",
+      "material": "Etched aluminium foil (high-purity Al)",
+      "function": "High-purity aluminium foil, electrochemically etched into a sponge of tunnels that multiplies its surface 30-100x, then anodised: the oxide grown on it is the dielectric.",
+      "thickness_true_um": 100.0,
+      "thickness_model_um": 100.0,
+      "derived": false,
+      "color": "#B8BEC6",
+      "roughness": 0.55,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 44.737397794,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "oxide",
+      "kind": "oxide",
+      "name": "Aluminium oxide dielectric",
+      "material": "Anodic aluminium oxide (Al2O3)",
+      "function": "Al2O3 grown by anodising, ~1.4 nm per volt: only ~30 nm for a 16 V part. Thin dielectric x huge etched area = large C. It only insulates one way, hence the polarity.",
+      "thickness_true_um": 0.032,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#7FD3E0",
+      "roughness": 0.3,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 13.421219338,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "cathode_foil",
+      "kind": "cathode_foil",
+      "name": "Cathode foil (-)",
+      "material": "Aluminium foil",
+      "function": "Thinner aluminium foil that collects current from the electrolyte; the electrolyte itself is the true cathode plate touching the oxide.",
+      "thickness_true_um": 30.0,
+      "thickness_model_um": 30.0,
+      "derived": false,
+      "color": "#9EA4AC",
+      "roughness": 0.4,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 13.421219338,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "tab_L",
+      "kind": "tab",
+      "name": "Foil tab (L)",
+      "material": "Aluminium foil",
+      "function": "Aluminium strip stitched to its foil and welded to the lead below the seal.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#9EA4AC",
+      "roughness": 0.4,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_L",
+      "volume_mm3": 0.085,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "tab_R",
+      "kind": "tab",
+      "name": "Foil tab (R)",
+      "material": "Aluminium foil",
+      "function": "Aluminium strip stitched to its foil and welded to the lead below the seal.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#9EA4AC",
+      "roughness": 0.4,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_R",
+      "volume_mm3": 0.085,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "separator",
+      "kind": "separator",
+      "name": "Paper separator + electrolyte",
+      "material": "Kraft paper soaked in electrolyte",
+      "function": "Kraft paper soaked in a liquid electrolyte. It keeps the foils apart, and the electrolyte flows into every etched pore to reach the oxide: it is the real cathode.",
+      "thickness_true_um": 101.618,
+      "thickness_model_um": 86.65,
+      "derived": true,
+      "color": "#B58C5A",
+      "roughness": 0.9,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 110.493572002,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "lead_L",
+      "kind": "lead",
+      "name": "Lead wire (L)",
+      "material": "Tinned copper-clad steel wire",
+      "function": "Tinned wire welded to the foil tab; the longer lead is + (pin 1).",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9CCD0",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_L",
+      "volume_mm3": 0.589048623,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 4
+      }
+    },
+    {
+      "id": "lead_R",
+      "kind": "lead",
+      "name": "Lead wire (R)",
+      "material": "Tinned copper-clad steel wire",
+      "function": "Tinned wire welded to the foil tab; the longer lead is + (pin 1).",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#C9CCD0",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "terminal_R",
+      "volume_mm3": 0.589048623,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 4
+      }
+    },
+    {
+      "id": "can",
+      "kind": "can",
+      "name": "Aluminium can",
+      "material": "Aluminium can",
+      "function": "Deep-drawn aluminium can. The scored cross in its top is a safety vent: it splits open before internal gas pressure (overvoltage, reverse polarity) can burst the can.",
+      "thickness_true_um": 300.0,
+      "thickness_model_um": 300.0,
+      "derived": false,
+      "color": "#C9CDD2",
+      "roughness": 0.3,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 67.561378094,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 10
+      }
+    },
+    {
+      "id": "seal",
+      "kind": "seal",
+      "name": "Rubber seal",
+      "material": "Rubber seal (EPDM / IIR)",
+      "function": "Rubber bung clamped by the rolled groove; seals in the electrolyte, leads pass through.",
+      "thickness_true_um": null,
+      "thickness_model_um": null,
+      "derived": false,
+      "color": "#2B2B2E",
+      "roughness": 0.9,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 77.657353276,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "stripe",
+      "kind": "stripe",
+      "name": "Polarity stripe (-)",
+      "material": "PET sleeve, printed polarity stripe",
+      "function": "Printed stripe marking the negative lead.",
+      "thickness_true_um": 100.0,
+      "thickness_model_um": 100.0,
+      "derived": false,
+      "color": "#D9DDE3",
+      "roughness": 0.45,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 2.616004203,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 12
+      }
+    },
+    {
+      "id": "sleeve",
+      "kind": "sleeve",
+      "name": "Sleeve",
+      "material": "PET heat-shrink sleeve",
+      "function": "Heat-shrink insulating sleeve carrying the ratings.",
+      "thickness_true_um": 100.0,
+      "thickness_model_um": 100.0,
+      "derived": false,
+      "color": "#1F3F7A",
+      "roughness": 0.45,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 18.787666546,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 12
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "plane": null,
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.7,
+          -1.2,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "longitudinal",
+      "label": "Vertical section through both leads",
+      "plane": {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "point": [
+          2.5,
+          0.0375,
+          4.925
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.15
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "horizontal",
+      "label": "Horizontal section (the winding)",
+      "plane": {
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "point": [
+          2.5,
+          0,
+          4.925
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -0.25,
+          1.0
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "inside",
+      "label": "Inside (can, sleeve and seal hidden)",
+      "plane": null,
+      "explode": 0.0,
+      "hide": [
+        "can",
+        "sleeve",
+        "stripe",
+        "seal"
+      ],
+      "camera": {
+        "direction": [
+          0.7,
+          -1.2,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "exploded",
+      "label": "Fully exploded",
+      "plane": null,
+      "explode": 1.0,
+      "camera": {
+        "direction": [
+          0.9,
+          -1.3,
+          0.5
+        ]
+      }
+    }
+  ],
+  "physics": {
+    "type": "electrolytic",
+    "plane": {
+      "normal": [
+        0,
+        0,
+        -1
+      ],
+      "point": [
+        2.5,
+        0,
+        4.925
+      ]
+    },
+    "dielectric_layer": "oxide",
+    "contacts": {
+      "positive": [
+        "anode_foil",
+        "tab_L",
+        "lead_L"
+      ],
+      "negative": [
+        "cathode_foil",
+        "separator",
+        "tab_R",
+        "lead_R"
+      ]
+    },
+    "electrical": {
+      "capacitance_f": 0.0001,
+      "rated_voltage_v": 16,
+      "forming_voltage_v": 23,
+      "nm_per_volt": 1.4,
+      "epsilon_r": 9.0,
+      "anode_length_mm": 120,
+      "foil_width_mm": 4.45,
+      "leakage_cv": 0.01,
+      "esr_ohm": 0.6,
+      "kind": "aluminum",
+      "gain_max": 150,
+      "ref_length_mm": 120,
+      "ref_area_mm2": 1068.0
+    },
+    "oxide_um_true": 0.032,
+    "cut_layers": [
+      "anode_foil",
+      "oxide",
+      "cathode_foil"
+    ],
+    "cut_color_layer": "separator",
+    "cut": {
+      "mode": "radial",
+      "center": [
+        2.5,
+        0.0
+      ],
+      "r_in": 0.6668500000000003,
+      "r_out": 3.481575
+    },
+    "model_turns": 8,
+    "camera": {
+      "direction": [
+        0.0,
+        -0.25,
+        1.0
+      ],
+      "box": [
+        [
+          -1.5,
+          -4.0,
+          4.425
+        ],
+        [
+          6.5,
+          4.0,
+          4.925
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,144 @@
+# Thick-film chip resistor, 0603 (1608 metric).
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame): X = length (terminations at +/-X), Y = width, Z = up,
+# origin = footprint centre, z = 0 = PCB surface (underside of the tin).
+
+component: chip_resistor
+generator: geometry.components.chip_resistor
+size: "0603"
+display_name: Chip resistor
+category: Resistors
+description: RuO2 film on alumina, laser-trimmed, with Ni/Sn plated terminations.
+reference_step: "Components/Resistors/Chip Resistor/R_0603_1608Metric.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm, outer nominal (incl. plating)
+  length: 1.60
+  width: 0.80
+  height: 0.45
+  top_electrode_length: 0.30    # from each substrate end
+  bottom_electrode_length: 0.30
+
+layout:                         # mm, never exaggerated
+  resistive_overlap: 0.10       # RuO2 overlap onto each top electrode
+  resistive_side_margin: 0.06   # RuO2 inset from each long edge of the substrate
+  glass_margin: 0.03            # glass extends past the resistive layer on every side
+  overcoat_margin_x: 0.03       # epoxy extends past the glass along X
+  overcoat_side_margin: 0.02    # epoxy inset from each long edge of the substrate
+  min_exposed_electrode: 0.05   # plated top-electrode length that must remain outside the epoxy
+
+trim:                           # laser L-cut through glass + RuO2, filled by epoxy
+  kerf_width: 0.030             # mm
+  plunge_fraction: 0.45         # plunge depth (to kerf centreline) as a fraction of the resistive width;
+                                # kept off 0.5 so the centre longitudinal section doesn't lie on a kerf face
+  plunge_x_fraction: -0.30      # plunge centre X as a fraction of the gap half-length
+  run_fraction: 0.60            # 90-degree leg length (+X) as a fraction of the gap half-length
+  from_edge: -Y                 # long edge the plunge starts from
+
+thickness_um:                   # true (physical) thicknesses
+  bottom_electrode: 10
+  top_electrode: 10
+  resistive: 10
+  glass_primary: 10
+  overcoat_secondary: 25
+  edge_electrode: 1
+  nickel: 3
+  tin: 5
+  marking: 5
+
+exaggeration:                   # `exaggerated` variant only
+  factor: 5
+  min_visible_um: 15
+  max_um: 40                    # cap so thick-ish layers don't eat the substrate
+  min_substrate_fraction: 0.40  # substrate must remain >= this fraction of H
+
+electrical:                     # drives the physics view (nominal matches the "103" marking)
+  nominal_ohm: 10000
+  rated_power_w: 0.1
+  max_working_voltage_v: 75
+
+marking:                        # printed resistance code on the epoxy (the epoxy top drops
+  enabled: true                 # by the marking thickness so the overall height stays H)
+  text: "103"
+  font: DejaVu Sans
+  font_fraction: 0.5            # font size as a fraction of the epoxy width
+
+explode:
+  step_mm: 0.12                 # displacement per explode-order unit (scaled per size)
+
+# Layer descriptions. Keys are layer "kinds"; _L/_R instances share one entry.
+layers:
+  substrate:
+    name: Ceramic substrate
+    material: alumina_96
+    function: >-
+      The rigid, electrically insulating body that everything else is printed on.
+      Alumina also spreads the heat generated in the resistive film.
+    explode: {direction: [0, 0, 0], order: 0}
+  bottom_electrode:
+    name: Bottom electrode
+    material: silver_thick_film
+    function: >-
+      Screen-printed silver pad on the underside. It becomes the surface that is
+      soldered to the PCB land.
+    explode: {direction: [0, 0, -1], order: 1}
+  top_electrode:
+    name: Top electrode
+    material: agpd_thick_film
+    function: >-
+      Silver-palladium pad that the resistive film overlaps, making the electrical
+      contact to the resistor element. Palladium resists silver leaching during soldering.
+    explode: {direction: [0, 0, 1], order: 1}
+  resistive:
+    name: Resistive element
+    material: ruo2_thick_film
+    function: >-
+      Ruthenium-oxide glass paste fired onto the substrate. Its sheet resistance and
+      printed geometry set the resistance; the laser trim cut fine-tunes it to value.
+    explode: {direction: [0, 0, 1], order: 2}
+  glass_primary:
+    name: Primary overcoat
+    material: glass_overcoat
+    function: >-
+      Thin glass layer fired over the resistive film. It protects the film during laser
+      trimming and reduces trim-induced micro-cracking and drift.
+    explode: {direction: [0, 0, 1], order: 3}
+  overcoat_secondary:
+    name: Secondary overcoat
+    material: epoxy_overcoat
+    function: >-
+      Epoxy/resin coat that seals the resistor against moisture and mechanical damage.
+      It also fills the laser-trim kerf, so no voids remain.
+    explode: {direction: [0, 0, 1], order: 4}
+  edge_electrode:
+    name: End-face electrode
+    material: nicr_sputtered
+    function: >-
+      Sputtered nickel-chromium film on the end face that electrically joins the top and
+      bottom electrodes and gives the plating a conductive surface to grow on.
+    explode: {direction: [1, 0, 0], order: 1}   # sign flipped for _L
+  nickel:
+    name: Nickel barrier
+    material: nickel_plated
+    function: >-
+      Electroplated nickel that stops molten solder from dissolving the silver
+      electrodes (leaching) during reflow.
+    explode: {direction: [1, 0, 0], order: 2}
+  tin:
+    name: Tin termination
+    material: tin_matte
+    function: >-
+      Outer matte-tin plating that wets readily with solder and protects the nickel
+      from oxidation, giving a reliable solder joint.
+    explode: {direction: [1, 0, 0], order: 3}
+  marking:
+    name: Printed marking
+    material: marking_ink
+    function: >-
+      Resistance code printed on top of the overcoat (e.g. "103" = 10 x 10^3 ohm).
+    explode: {direction: [0, 0, 1], order: 5}
+
+tessellation:                   # mesh export; planar layers mesh exactly, these matter for curves
+  linear_deflection: 0.0005     # mm (0.5 um, well under the thinnest layer)
+  angular_deflection: 0.1       # rad

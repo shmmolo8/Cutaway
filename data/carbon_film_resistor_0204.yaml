@@ -1,0 +1,134 @@
+# Carbon film resistor, axial DIN 0204 (body 3.6 mm x 1.6 mm), leads bent for 5.08 mm pitch.
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame, KiCad THT convention): origin = pin 1, z = 0 = PCB surface.
+# X = body axis (pin 2 at +X), Y = across, Z = up. The body axis is horizontal at
+# z = diameter / 2 (the body rests on the board). Radii below are measured from that axis;
+# "ax" = axial position measured from the body centre.
+
+component: carbon_film_resistor
+generator: geometry.components.carbon_film_resistor
+size: "0204"
+display_name: Carbon film resistor
+category: Resistors
+description: Pyrolytic carbon film on a ceramic rod, spiral-cut to value, with pressed-on caps and lacquer.
+reference_step: "Components/Resistors/Carbon Film Resistor/R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm
+  length: 3.60                  # body, outer
+  diameter: 1.60                # over the cap bulges
+  height: 1.60                  # = diameter (for the generic thickness rules)
+  end_round_radius: 0.40        # outer corner radius of the body ends
+  cap_length: 0.70              # cap skirt length along the rod, from the rod end
+  pitch: 5.08                   # lead spacing (pin 1 at x = 0)
+  lead_diameter: 0.50
+  lead_bend_radius: 0.50        # centre-line radius of the 90-degree bend
+  lead_length_below: 3.00       # lead end below the PCB surface
+
+spiral:                         # helical groove cut through the carbon film (filled by lacquer)
+  kerf_width: 0.08              # mm, along the axis (diamond wheel / laser)
+  pitch: 0.30                   # mm per turn -> axial track width = pitch - kerf
+  turns: 5.4                    # cut until the value is reached (10 kOhm, within the 5 % band)
+  end_margin: 0.12              # uncut film between each cap edge and the spiral ends
+  start_angle_deg: 20           # where the cut starts (angle about the axis, from +Y towards +Z)
+
+bands:                          # colour code, centres as axial positions from the body centre (mm)
+  width: 0.22
+  items:
+    - {kind: band_1, center: -0.74}   # brown  = 1
+    - {kind: band_2, center: -0.42}   # black  = 0
+    - {kind: band_3, center: -0.10}   # orange = x 1000
+    - {kind: band_4, center: 0.56}    # gold   = +/- 5 %
+
+no_thickness: [lead]            # the copper wire is sized by lead_diameter, not a film thickness
+
+thickness_um:                   # true (physical) thicknesses
+  carbon_film: 0.3
+  cap: 80
+  lacquer: 60
+  lead_plating: 5
+  band: 15
+
+exaggeration:                   # `exaggerated` variant only
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.70  # ceramic rod diameter must remain >= this fraction of D
+
+electrical:                     # drives the physics view (nominal matches the colour bands)
+  nominal_ohm: 10000
+  tolerance: 0.05
+  rated_power_w: 0.25           # typical DIN 0204 carbon film
+  max_working_voltage_v: 200
+  resistivity_ohm_m: 3.5e-5     # typical pyrolytic carbon (1e-5 ... 1e-4 depending on deposition)
+
+explode:
+  step_mm: 0.30
+
+layers:
+  core:
+    name: Ceramic rod
+    material: steatite_core
+    function: >-
+      Insulating ceramic rod that carries the film. Its diameter and length set the size of
+      the carbon "sheet" and it conducts heat from the film to the caps and leads.
+    explode: {direction: [0, 0, 0], order: 0}
+  carbon_film:
+    name: Carbon film
+    material: pyrolytic_carbon
+    function: >-
+      Thin pyrolytic carbon (cracked from methane at ~1000 C) coating the rod. R = rho * length /
+      (width * thickness): a spiral groove turns the short, wide tube into a long, narrow
+      helical track, and the cut stops when the resistance reaches its value.
+    explode: {direction: [0, 0, -1], order: 5}
+  cap:
+    name: End cap
+    material: steel_cap_tinned
+    function: >-
+      Tin-plated steel cap pressed over each end of the coated rod. The press fit makes the
+      contact to the carbon film all around the rod.
+    explode: {direction: [1, 0, 0], order: 2}   # sign flipped for _L
+  lead:
+    name: Lead wire
+    material: copper_wire
+    function: >-
+      Copper wire welded to the cap; it carries current and most of the heat into the PCB.
+    explode: {direction: [1, 0, 0], order: 3}
+  lead_plating:
+    name: Lead plating
+    material: tin_matte
+    function: >-
+      Tin coating on the lead: solders easily and protects the copper from oxidation.
+    explode: {direction: [1, 0, 0], order: 4}
+  band_1:
+    name: 1st band (brown = 1)
+    material: paint_brown
+    function: First digit of the value in the colour code.
+    explode: {direction: [0, 0, 1], order: 7}
+  band_2:
+    name: 2nd band (black = 0)
+    material: paint_black
+    function: Second digit of the value in the colour code.
+    explode: {direction: [0, 0, 1], order: 7}
+  band_3:
+    name: Multiplier band (orange = x1000)
+    material: paint_orange
+    function: Multiplier - 10 x 1000 = 10 kOhm.
+    explode: {direction: [0, 0, 1], order: 7}
+  band_4:
+    name: Tolerance band (gold = 5 %)
+    material: paint_gold
+    function: Tolerance - the spiral cut stops once R is within 5 % of the value.
+    explode: {direction: [0, 0, 1], order: 7}
+  lacquer:
+    name: Lacquer coating
+    material: lacquer_beige
+    function: >-
+      Several coats of epoxy lacquer sealing film, groove and caps against moisture and
+      damage. It fills the spiral groove, and the colour bands are painted into it.
+    explode: {direction: [0, 0, 1], order: 6}
+
+tessellation:
+  linear_deflection: 0.002      # curved faces: angular deflection sets the segment count
+  angular_deflection: 0.055

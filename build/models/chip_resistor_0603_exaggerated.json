@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "component": {
+    "id": "chip_resistor_0603",
+    "family": "chip_resistor",
+    "size": "0603",
+    "name": "Chip resistor",
+    "category": "Resistors",
+    "description": "RuO2 film on alumina, laser-trimmed, with Ni/Sn plated terminations.",
+    "variant": "exaggerated",
+    "variants": {
+      "exaggerated": "models/chip_resistor_0603_exaggerated",
+      "true_scale": "models/chip_resistor_0603_true_scale"
+    },
+    "units": "mm",
+    "up": "+Z",
+    "frame": "CAD Z-up; GLB root node rotates to glTF Y-up; layer nodes are in CAD frame",
+    "bbox": [
+      [
+        -0.8,
+        -0.4,
+        0.0
+      ],
+      [
+        0.8,
+        0.4,
+        0.45
+      ]
+    ],
+    "source": "data/chip_resistor_0603.yaml",
+    "levels": {
+      "tin_bottom": 0.0,
+      "bottom_electrode_bottom": 0.04,
+      "substrate_bottom": 0.08,
+      "substrate_top": 0.265,
+      "top_electrode_top": 0.305,
+      "termination_top": 0.345,
+      "overcoat_top": 0.425,
+      "top": 0.45,
+      "substrate_half_length": 0.745,
+      "gap_half_length": 0.445,
+      "resistive_half_length": 0.545,
+      "resistive_half_width": 0.34,
+      "overcoat_half_length": 0.605
+    }
+  },
+  "explode": {
+    "step_mm": 0.12
+  },
+  "layers": [
+    {
+      "id": "substrate",
+      "kind": "substrate",
+      "name": "Ceramic substrate",
+      "material": "96% alumina (Al2O3)",
+      "function": "The rigid, electrically insulating body that everything else is printed on. Alumina also spreads the heat generated in the resistive film.",
+      "thickness_true_um": 372.0,
+      "thickness_model_um": 185.0,
+      "derived": true,
+      "color": "#E9E6DE",
+      "roughness": 0.85,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.22052,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          0
+        ],
+        "order": 0
+      }
+    },
+    {
+      "id": "bottom_electrode_L",
+      "kind": "bottom_electrode",
+      "name": "Bottom electrode (L)",
+      "material": "Silver (Ag) thick film",
+      "function": "Screen-printed silver pad on the underside. It becomes the surface that is soldered to the PCB land.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#D3D7DD",
+      "roughness": 0.28,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_L",
+      "volume_mm3": 0.0096,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "bottom_electrode_R",
+      "kind": "bottom_electrode",
+      "name": "Bottom electrode (R)",
+      "material": "Silver (Ag) thick film",
+      "function": "Screen-printed silver pad on the underside. It becomes the surface that is soldered to the PCB land.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#D3D7DD",
+      "roughness": 0.28,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_R",
+      "volume_mm3": 0.0096,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          -1
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "top_electrode_L",
+      "kind": "top_electrode",
+      "name": "Top electrode (L)",
+      "material": "Silver-palladium (Ag-Pd) thick film",
+      "function": "Silver-palladium pad that the resistive film overlaps, making the electrical contact to the resistor element. Palladium resists silver leaching during soldering.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#ABA597",
+      "roughness": 0.32,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_L",
+      "volume_mm3": 0.0096,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "top_electrode_R",
+      "kind": "top_electrode",
+      "name": "Top electrode (R)",
+      "material": "Silver-palladium (Ag-Pd) thick film",
+      "function": "Silver-palladium pad that the resistive film overlaps, making the electrical contact to the resistor element. Palladium resists silver leaching during soldering.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#ABA597",
+      "roughness": 0.32,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_R",
+      "volume_mm3": 0.0096,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "resistive",
+      "kind": "resistive",
+      "name": "Resistive element",
+      "material": "Ruthenium oxide (RuO2) thick film",
+      "function": "Ruthenium-oxide glass paste fired onto the substrate. Its sheet resistance and printed geometry set the resistance; the laser trim cut fine-tunes it to value.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#141414",
+      "roughness": 0.6,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.0311364,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "glass_primary",
+      "kind": "glass_primary",
+      "name": "Primary overcoat",
+      "material": "Glass",
+      "function": "Thin glass layer fired over the resistive film. It protects the film during laser trimming and reduces trim-induced micro-cracking and drift.",
+      "thickness_true_um": 10.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#B5E0C0",
+      "roughness": 0.08,
+      "metalness": 0.0,
+      "opacity": 0.45,
+      "group": null,
+      "volume_mm3": 0.0402324,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "overcoat_secondary",
+      "kind": "overcoat_secondary",
+      "name": "Secondary overcoat",
+      "material": "Epoxy / resin",
+      "function": "Epoxy/resin coat that seals the resistor against moisture and mechanical damage. It also fills the laser-trim kerf, so no voids remain.",
+      "thickness_true_um": 25.0,
+      "thickness_model_um": 40.0,
+      "derived": false,
+      "color": "#2A3D52",
+      "roughness": 0.65,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.0660392,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 4
+      }
+    },
+    {
+      "id": "edge_electrode_L",
+      "kind": "edge_electrode",
+      "name": "End-face electrode (L)",
+      "material": "Nickel-chromium (NiCr) sputtered thin film",
+      "function": "Sputtered nickel-chromium film on the end face that electrically joins the top and bottom electrodes and gives the plating a conductive surface to grow on.",
+      "thickness_true_um": 1.0,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#4B463F",
+      "roughness": 0.45,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_L",
+      "volume_mm3": 0.00318,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "edge_electrode_R",
+      "kind": "edge_electrode",
+      "name": "End-face electrode (R)",
+      "material": "Nickel-chromium (NiCr) sputtered thin film",
+      "function": "Sputtered nickel-chromium film on the end face that electrically joins the top and bottom electrodes and gives the plating a conductive surface to grow on.",
+      "thickness_true_um": 1.0,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#4B463F",
+      "roughness": 0.45,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_R",
+      "volume_mm3": 0.00318,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 1
+      }
+    },
+    {
+      "id": "nickel_L",
+      "kind": "nickel",
+      "name": "Nickel barrier (L)",
+      "material": "Electroplated nickel",
+      "function": "Electroplated nickel that stops molten solder from dissolving the silver electrodes (leaching) during reflow.",
+      "thickness_true_um": 3.0,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#8B8984",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_L",
+      "volume_mm3": 0.00918,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "nickel_R",
+      "kind": "nickel",
+      "name": "Nickel barrier (R)",
+      "material": "Electroplated nickel",
+      "function": "Electroplated nickel that stops molten solder from dissolving the silver electrodes (leaching) during reflow.",
+      "thickness_true_um": 3.0,
+      "thickness_model_um": 15.0,
+      "derived": false,
+      "color": "#8B8984",
+      "roughness": 0.35,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_R",
+      "volume_mm3": 0.00918,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 2
+      }
+    },
+    {
+      "id": "tin_L",
+      "kind": "tin",
+      "name": "Tin termination (L)",
+      "material": "Electroplated matte tin (Sn)",
+      "function": "Outer matte-tin plating that wets readily with solder and protects the nickel from oxidation, giving a reliable solder joint.",
+      "thickness_true_um": 5.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#E2E4E7",
+      "roughness": 0.5,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_L",
+      "volume_mm3": 0.0169,
+      "explode": {
+        "direction": [
+          -1.0,
+          0,
+          0
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "tin_R",
+      "kind": "tin",
+      "name": "Tin termination (R)",
+      "material": "Electroplated matte tin (Sn)",
+      "function": "Outer matte-tin plating that wets readily with solder and protects the nickel from oxidation, giving a reliable solder joint.",
+      "thickness_true_um": 5.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#E2E4E7",
+      "roughness": 0.5,
+      "metalness": 1.0,
+      "opacity": 1.0,
+      "group": "termination_R",
+      "volume_mm3": 0.0169,
+      "explode": {
+        "direction": [
+          1.0,
+          0,
+          0
+        ],
+        "order": 3
+      }
+    },
+    {
+      "id": "marking",
+      "kind": "marking",
+      "name": "Printed marking",
+      "material": "Marking ink",
+      "function": "Resistance code printed on top of the overcoat (e.g. \"103\" = 10 x 10^3 ohm).",
+      "thickness_true_um": 5.0,
+      "thickness_model_um": 25.0,
+      "derived": false,
+      "color": "#F4F4F0",
+      "roughness": 0.8,
+      "metalness": 0.0,
+      "opacity": 1.0,
+      "group": null,
+      "volume_mm3": 0.001495316,
+      "explode": {
+        "direction": [
+          0.0,
+          0,
+          1
+        ],
+        "order": 5
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "exterior",
+      "label": "Exterior",
+      "plane": null,
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.9,
+          -1.3,
+          1.0
+        ]
+      }
+    },
+    {
+      "id": "longitudinal",
+      "label": "Longitudinal section",
+      "plane": {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "point": [
+          0,
+          0,
+          0
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -1.0,
+          0.12
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "transverse",
+      "label": "Transverse section (termination)",
+      "plane": {
+        "normal": [
+          -1,
+          0,
+          0
+        ],
+        "point": [
+          0.675,
+          0,
+          0
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          1.0,
+          0.0,
+          0.12
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "plan_trim",
+      "label": "Plan view: resistive mid-height (trim cut)",
+      "plane": {
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "point": [
+          0,
+          0,
+          0.28500000000000003
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -0.001,
+          1.0
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "plan_overlap",
+      "label": "Plan view: electrode overlap",
+      "plane": {
+        "normal": [
+          0,
+          0,
+          -1
+        ],
+        "point": [
+          0,
+          0,
+          0.325
+        ]
+      },
+      "explode": 0.0,
+      "camera": {
+        "direction": [
+          0.0,
+          -0.001,
+          1.0
+        ],
+        "fit": "section"
+      }
+    },
+    {
+      "id": "exploded",
+      "label": "Fully exploded",
+      "plane": null,
+      "explode": 1.0,
+      "camera": {
+        "direction": [
+          1.0,
+          -1.4,
+          0.9
+        ]
+      }
+    }
+  ],
+  "physics": {
+    "type": "sheet_conduction",
+    "film_layer": "resistive",
+    "domain": [
+      [
+        -0.545,
+        -0.34
+      ],
+      [
+        0.545,
+        0.34
+      ]
+    ],
+    "contact_x": [
+      -0.445,
+      0.445
+    ],
+    "surface": {
+      "z_low": 0.305,
+      "z_high": 0.345,
+      "x_step": 0.405
+    },
+    "z_substrate": [
+      0.08,
+      0.265
+    ],
+    "trim": {
+      "x0": -0.1335,
+      "kerf": 0.03,
+      "sy": -1.0,
+      "y_film_edge": -0.34,
+      "y_tip": -0.018999999999999975,
+      "leg_end_x": 0.1335,
+      "leg_end_x_max": 0.36500000000000005
+    },
+    "contacts": {
+      "positive": [
+        "bottom_electrode_L",
+        "top_electrode_L",
+        "edge_electrode_L",
+        "nickel_L",
+        "tin_L"
+      ],
+      "negative": [
+        "bottom_electrode_R",
+        "top_electrode_R",
+        "edge_electrode_R",
+        "nickel_R",
+        "tin_R"
+      ]
+    },
+    "thermal_layers": [
+      "substrate",
+      "bottom_electrode_L",
+      "bottom_electrode_R",
+      "top_electrode_L",
+      "top_electrode_R",
+      "edge_electrode_L",
+      "edge_electrode_R",
+      "nickel_L",
+      "nickel_R",
+      "tin_L",
+      "tin_R"
+    ],
+    "fade_layers": [
+      "glass_primary",
+      "overcoat_secondary"
+    ],
+    "hide_layers": [
+      "marking"
+    ],
+    "electrical": {
+      "nominal_ohm": 10000,
+      "rated_power_w": 0.1,
+      "max_working_voltage_v": 75
+    },
+    "camera": {
+      "direction": [
+        0.12,
+        -0.55,
+        1.0
+      ]
+    }
+  }
+}

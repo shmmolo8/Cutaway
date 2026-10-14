@@ -1,0 +1,94 @@
+# Multilayer ceramic capacitor (MLCC), 0603 (1608 metric), base-metal electrodes.
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame): X = length (terminations at +/-X), Y = width, Z = up,
+# origin = footprint centre, z = 0 = PCB surface (underside of the tin).
+
+component: mlcc
+generator: geometry.components.mlcc
+size: "0603"
+display_name: Ceramic chip capacitor (MLCC)
+category: Capacitors
+description: Interleaved Ni electrodes in BaTiO3 ceramic with 5-sided Cu/Ni/Sn terminations.
+reference_step: "Components/Capacitors/MLCC/C_0603_1608Metric.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm, outer nominal (incl. terminations)
+  length: 1.60
+  width: 0.80
+  height: 0.80
+  band_length: 0.35             # termination band on top/bottom/sides, from the outer end
+
+layout:                         # mm, never exaggerated
+  electrode_count: 16           # representative; real parts stack hundreds of ~1 um layers
+  cover_thickness: 0.07         # ceramic cover above/below the active stack
+  side_margin: 0.08             # ceramic between electrode edges and the body sides
+  end_margin: 0.12              # gap between an electrode tip and the opposite termination
+
+thickness_um:                   # true (physical) thicknesses
+  inner_electrode: 1.0
+  copper: 20
+  nickel: 2
+  tin: 4
+
+exaggeration:                   # `exaggerated` variant only
+  factor: 5
+  min_visible_um: 15
+  max_um: 40
+  min_substrate_fraction: 0.40  # ceramic body must remain >= this fraction of H
+
+electrical:                     # physics view; a typical 0603 1 uF 16 V X7R part
+  epsilon_r: 2500               # X7R barium titanate, low field
+  rated_voltage_v: 16
+  real_part:                    # for the "model vs real part" comparison
+    capacitance_f: 1.0e-6
+    dielectric_um: 2.0          # ceramic thickness between real electrodes
+  dc_bias_e_half_v_per_um: 6.5  # illustrative X7R curve: eps_eff = eps_r / (1 + (E/E_half)^2)
+  ac:                           # typical parasitics of a 0603 1 uF MLCC (datasheet-order values)
+    esl_h: 0.7e-9               # equivalent series inductance
+    esr_ohm: 0.012              # equivalent series resistance near resonance
+    filter_source_ohm: 1.0      # example: supply/trace impedance feeding the capacitor
+
+explode:
+  step_mm: 0.14                 # displacement per explode-order unit
+
+tessellation:
+  linear_deflection: 0.0005
+  angular_deflection: 0.1
+
+layers:
+  inner_electrodes:
+    name: Inner electrodes
+    material: nickel_inner_electrode
+    function: >-
+      Printed nickel plates stacked with ceramic between them. Alternate plates connect to
+      opposite ends, so the stack acts as many capacitors in parallel; more, thinner layers
+      give more capacitance.
+    explode: {direction: [1, 0, 0], order: 1}   # sign flipped for _L
+  dielectric:
+    name: Ceramic dielectric
+    material: batio3_x7r
+    function: >-
+      Barium-titanate ceramic co-fired with the electrodes. Its very high permittivity stores
+      the charge; the cover layers and margins seal the electrodes inside.
+    explode: {direction: [0, 0, 0], order: 0}
+  copper:
+    name: Copper termination
+    material: copper_termination
+    function: >-
+      Copper paste dipped over each end and fired. It joins every inner electrode on that end
+      into one terminal.
+    explode: {direction: [1, 0, 0], order: 2}
+  nickel:
+    name: Nickel barrier
+    material: nickel_plated
+    function: >-
+      Electroplated nickel that keeps molten solder from dissolving the copper during reflow.
+    explode: {direction: [1, 0, 0], order: 3}
+  tin:
+    name: Tin termination
+    material: tin_matte
+    function: >-
+      Outer matte-tin plating that wets readily with solder and protects the nickel from
+      oxidation.
+    explode: {direction: [1, 0, 0], order: 4}

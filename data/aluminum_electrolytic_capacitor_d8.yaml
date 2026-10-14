@@ -1,0 +1,137 @@
+# Aluminium electrolytic capacitor, radial, 8 mm can, 5.00 mm lead pitch (100 µF 16 V).
+#
+# Units: lateral dimensions in mm, layer thicknesses in micrometres (um).
+# Axes (CAD frame, KiCad THT convention): origin = pin 1 (+), pin 2 (-) at +X, z = 0 = PCB.
+# The can stands upright: its axis is vertical at x = pitch/2, y = 0.
+
+component: aluminum_electrolytic_capacitor
+generator: geometry.components.aluminum_electrolytic_capacitor
+size: "d8"
+display_name: Aluminium electrolytic capacitor
+category: Capacitors
+description: Wound anode foil with a nanometre Al2O3 dielectric, electrolyte-soaked paper and cathode foil in a sealed aluminium can.
+reference_step: "Components/Capacitors/Aluminum/CP_Radial_D8.0mm_P5.00mm.step"
+bbox_tolerance_mm: 0.02
+
+dimensions:                     # mm
+  diameter: 8.00                # over the sleeve
+  height: 0.1667                # anode-to-cathode spacing (half the winding pitch); the
+                                # separator (derived) fills what the foils leave of it
+  body_top: 8.00
+  pitch: 5.00
+  lead_diameter: 0.50
+  lead_below: 2.00
+  lead_top: 1.00                # lead ends (welded to its tab) inside the rubber seal
+  sleeve_bottom: 0.30
+  sleeve_lip: 0.60              # sleeve folded over the can top / under the can lip (radial)
+  can_bottom: 0.45              # open end of the can, curled onto the seal
+  can_top_thickness: 0.40
+  bead: {z: 2.00, depth: 0.25, half_width: 0.25}   # rolled groove that clamps the seal
+  seal_top: 2.40
+  roll_radius: 3.50             # outer radius of the wound element (paper)
+  roll_z: [2.50, 7.35]          # paper, bottom/top
+  foil_margin: 0.20             # paper sticks out past the foils at each end
+  tab_width: 0.50
+  tab_thickness: 0.10
+  vent: {length: 5.0, width: 0.15, depth: 0.15}   # cross-shaped score in the can top
+  stripe_half_angle_deg: 22     # polarity stripe over the - lead
+
+winding:                        # semicircle spiral (exact offsets); real parts have ~30 turns
+  pitch: 0.3333                 # radial growth per turn; anode and cathode are half a pitch apart
+  turns: 8
+  tab_turn: 5                   # turn at which each foil passes over its lead (sets the inner radius)
+
+no_thickness: [lead, tab, seal]
+
+thickness_um:
+  anode_foil: 100
+  oxide: 0.032                  # ~1.4 nm per forming volt x 23 V
+  cathode_foil: 30
+  can: 300
+  sleeve: 100
+
+exaggeration:
+  factor: 5
+  min_visible_um: 15
+  max_um: 25
+  min_substrate_fraction: 0.40  # separator must keep >= this share of the anode-cathode spacing
+
+electrical:                     # drives the physics view (computed, see the HUD)
+  capacitance_f: 100.0e-6
+  rated_voltage_v: 16
+  forming_voltage_v: 23         # anodising voltage: sets the oxide thickness
+  nm_per_volt: 1.4              # oxide growth during anodising, typical
+  epsilon_r: 9.0                # anodic Al2O3, typical
+  anode_length_mm: 120          # real foil (the model winds fewer turns)
+  foil_width_mm: 4.45           # = foil height in the roll
+  leakage_cv: 0.01              # datasheet-style I_leak <= 0.01 C V
+  esr_ohm: 0.6                  # typical at 100 kHz
+
+explode:
+  step_mm: 0.80
+
+layers:
+  anode_foil:
+    name: Anode foil (+)
+    material: aluminum_foil_etched
+    function: >-
+      High-purity aluminium foil, electrochemically etched into a sponge of tunnels that
+      multiplies its surface 30-100x, then anodised: the oxide grown on it is the dielectric.
+    explode: {direction: [0, 0, 0], order: 0}
+  oxide:
+    name: Aluminium oxide dielectric
+    material: alumina_anodic
+    function: >-
+      Al2O3 grown by anodising, ~1.4 nm per volt: only ~30 nm for a 16 V part. Thin dielectric
+      x huge etched area = large C. It only insulates one way, hence the polarity.
+    explode: {direction: [0, 0, 0], order: 0}
+  cathode_foil:
+    name: Cathode foil (-)
+    material: aluminum_foil_plain
+    function: >-
+      Thinner aluminium foil that collects current from the electrolyte; the electrolyte
+      itself is the true cathode plate touching the oxide.
+    explode: {direction: [0, 0, 0], order: 0}
+  tab:
+    name: Foil tab
+    material: aluminum_foil_plain
+    function: Aluminium strip stitched to its foil and welded to the lead below the seal.
+    explode: {direction: [0, 0, -1], order: 2}
+  separator:
+    name: Paper separator + electrolyte
+    material: paper_electrolyte
+    function: >-
+      Kraft paper soaked in a liquid electrolyte. It keeps the foils apart, and the
+      electrolyte flows into every etched pore to reach the oxide: it is the real cathode.
+    explode: {direction: [0, 0, 0], order: 0}
+  seal:
+    name: Rubber seal
+    material: rubber_seal
+    function: Rubber bung clamped by the rolled groove; seals in the electrolyte, leads pass through.
+    explode: {direction: [0, 0, -1], order: 3}
+  lead:
+    name: Lead wire
+    material: tinned_wire
+    function: Tinned wire welded to the foil tab; the longer lead is + (pin 1).
+    explode: {direction: [0, 0, -1], order: 4}
+  can:
+    name: Aluminium can
+    material: aluminum_can
+    function: >-
+      Deep-drawn aluminium can. The scored cross in its top is a safety vent: it splits open
+      before internal gas pressure (overvoltage, reverse polarity) can burst the can.
+    explode: {direction: [0, 0, 1], order: 10}
+  sleeve:
+    name: Sleeve
+    material: pet_sleeve
+    function: Heat-shrink insulating sleeve carrying the ratings.
+    explode: {direction: [0, 0, 1], order: 12}
+  stripe:
+    name: Polarity stripe (-)
+    material: pet_sleeve_stripe
+    function: Printed stripe marking the negative lead.
+    explode: {direction: [0, 0, 1], order: 12}
+
+tessellation:
+  linear_deflection: 0.002
+  angular_deflection: 0.06

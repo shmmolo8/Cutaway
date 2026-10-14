@@ -1,0 +1,368 @@
+# Shared material library. Component files reference these keys.
+# color: sRGB hex. roughness/metalness: glTF PBR (0..1). opacity: 1 = opaque.
+alumina_96:
+  name: 96% alumina (Al2O3)
+  color: "#E9E6DE"
+  roughness: 0.85
+  metalness: 0.0
+  opacity: 1.0
+silver_thick_film:
+  name: Silver (Ag) thick film
+  color: "#D3D7DD"
+  roughness: 0.28
+  metalness: 1.0
+  opacity: 1.0
+agpd_thick_film:
+  name: Silver-palladium (Ag-Pd) thick film
+  color: "#ABA597"
+  roughness: 0.32
+  metalness: 1.0
+  opacity: 1.0
+ruo2_thick_film:
+  name: Ruthenium oxide (RuO2) thick film
+  color: "#141414"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+glass_overcoat:
+  name: Glass
+  color: "#B5E0C0"
+  roughness: 0.08
+  metalness: 0.0
+  opacity: 0.45
+epoxy_overcoat:
+  name: Epoxy / resin
+  color: "#2A3D52"
+  roughness: 0.65
+  metalness: 0.0
+  opacity: 1.0
+nicr_sputtered:
+  name: Nickel-chromium (NiCr) sputtered thin film
+  color: "#4B463F"
+  roughness: 0.45
+  metalness: 1.0
+  opacity: 1.0
+nickel_plated:
+  name: Electroplated nickel
+  color: "#8B8984"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+tin_matte:
+  name: Electroplated matte tin (Sn)
+  color: "#E2E4E7"
+  roughness: 0.5
+  metalness: 1.0
+  opacity: 1.0
+marking_ink:
+  name: Marking ink
+  color: "#F4F4F0"
+  roughness: 0.8
+  metalness: 0.0
+  opacity: 1.0
+batio3_x7r:
+  name: Barium titanate ceramic (BaTiO3, X7R)
+  color: "#C9AD86"
+  roughness: 0.8
+  metalness: 0.0
+  opacity: 1.0
+nickel_inner_electrode:
+  name: Nickel (base-metal inner electrode)
+  color: "#5E5B56"
+  roughness: 0.4
+  metalness: 1.0
+  opacity: 1.0
+copper_termination:
+  name: Fired copper thick film
+  color: "#C07A4C"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+ferrite_nizncu:
+  name: NiZnCu ferrite ceramic
+  color: "#4A4845"
+  roughness: 0.75
+  metalness: 0.0
+  opacity: 1.0
+silver_coil:
+  name: Printed silver (Ag) conductor
+  color: "#E3E5E8"
+  roughness: 0.25
+  metalness: 1.0
+  opacity: 1.0
+steatite_core:
+  name: Ceramic rod (steatite / alumina)
+  color: "#EDE8DC"
+  roughness: 0.85
+  metalness: 0.0
+  opacity: 1.0
+pyrolytic_carbon:
+  name: Pyrolytic carbon film
+  color: "#1B1B1D"
+  roughness: 0.5
+  metalness: 0.0
+  opacity: 1.0
+steel_cap_tinned:
+  name: Tin-plated steel cap
+  color: "#B9BCC0"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+copper_wire:
+  name: Copper wire
+  color: "#C4784A"
+  roughness: 0.3
+  metalness: 1.0
+  opacity: 1.0
+lacquer_beige:
+  name: Epoxy lacquer (beige)
+  color: "#D8B98A"
+  roughness: 0.55
+  metalness: 0.0
+  opacity: 1.0
+paint_brown:
+  name: Colour-code paint (brown)
+  color: "#6B3A1E"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+paint_black:
+  name: Colour-code paint (black)
+  color: "#161616"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+paint_orange:
+  name: Colour-code paint (orange)
+  color: "#E8731C"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+paint_gold:
+  name: Colour-code paint (gold)
+  color: "#C9A43A"
+  roughness: 0.4
+  metalness: 0.6
+  opacity: 1.0
+batio3_high_k:
+  name: Barium titanate ceramic (BaTiO3, high-K class 2)
+  color: "#D9C7A3"
+  roughness: 0.8
+  metalness: 0.0
+  opacity: 1.0
+silver_fired:
+  name: Fired silver (Ag) electrode
+  color: "#D3D7DD"
+  roughness: 0.3
+  metalness: 1.0
+  opacity: 1.0
+solder_snpb:
+  name: Solder (Sn alloy)
+  color: "#A9ADB3"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+tinned_wire:
+  name: Tinned copper-clad steel wire
+  color: "#C9CCD0"
+  roughness: 0.3
+  metalness: 1.0
+  opacity: 1.0
+epoxy_dip_orange:
+  name: Epoxy dip coating
+  color: "#D9772E"
+  roughness: 0.5
+  metalness: 0.0
+  opacity: 1.0
+aluminum_foil_etched:
+  name: Etched aluminium foil (high-purity Al)
+  color: "#B8BEC6"
+  roughness: 0.55
+  metalness: 1.0
+  opacity: 1.0
+alumina_anodic:
+  name: Anodic aluminium oxide (Al2O3)
+  color: "#7FD3E0"
+  roughness: 0.3
+  metalness: 0.0
+  opacity: 1.0
+aluminum_foil_plain:
+  name: Aluminium foil
+  color: "#9EA4AC"
+  roughness: 0.4
+  metalness: 1.0
+  opacity: 1.0
+paper_electrolyte:
+  name: Kraft paper soaked in electrolyte
+  color: "#B58C5A"
+  roughness: 0.9
+  metalness: 0.0
+  opacity: 1.0
+aluminum_can:
+  name: Aluminium can
+  color: "#C9CDD2"
+  roughness: 0.3
+  metalness: 1.0
+  opacity: 1.0
+rubber_seal:
+  name: Rubber seal (EPDM / IIR)
+  color: "#2B2B2E"
+  roughness: 0.9
+  metalness: 0.0
+  opacity: 1.0
+pet_sleeve:
+  name: PET heat-shrink sleeve
+  color: "#1F3F7A"
+  roughness: 0.45
+  metalness: 0.0
+  opacity: 1.0
+pet_sleeve_stripe:
+  name: PET sleeve, printed polarity stripe
+  color: "#D9DDE3"
+  roughness: 0.45
+  metalness: 0.0
+  opacity: 1.0
+tantalum_sintered:
+  name: Sintered tantalum powder (porous)
+  color: "#6E6A73"
+  roughness: 0.85
+  metalness: 0.6
+  opacity: 1.0
+tantalum_oxide:
+  name: Tantalum pentoxide (Ta2O5)
+  color: "#9B7FD6"
+  roughness: 0.3
+  metalness: 0.0
+  opacity: 1.0
+tantalum_wire:
+  name: Tantalum wire
+  color: "#8F8A94"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+mno2_cathode:
+  name: Manganese dioxide (MnO2)
+  color: "#2E2A26"
+  roughness: 0.9
+  metalness: 0.0
+  opacity: 1.0
+graphite_layer:
+  name: Graphite (carbon) layer
+  color: "#3D3F44"
+  roughness: 0.8
+  metalness: 0.2
+  opacity: 1.0
+silver_paint:
+  name: Silver paint
+  color: "#C7CBD1"
+  roughness: 0.4
+  metalness: 0.9
+  opacity: 1.0
+silver_epoxy:
+  name: Silver-filled epoxy
+  color: "#A9AEB5"
+  roughness: 0.5
+  metalness: 0.6
+  opacity: 1.0
+ptfe_washer:
+  name: PTFE washer
+  color: "#F2F0EA"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+lead_frame_tinned:
+  name: Tin-plated lead frame
+  color: "#D4D7DB"
+  roughness: 0.4
+  metalness: 1.0
+  opacity: 1.0
+mould_epoxy_yellow:
+  name: Moulding epoxy
+  color: "#E2B23A"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+marking_brown:
+  name: Polarity band (laser marked)
+  color: "#6B4A1E"
+  roughness: 0.7
+  metalness: 0.0
+  opacity: 1.0
+cermet_thick_film:
+  name: Cermet thick film (RuO2 / glass)
+  color: "#222224"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+precious_metal_wiper:
+  name: Precious-metal alloy wiper
+  color: "#E3C77A"
+  roughness: 0.3
+  metalness: 1.0
+  opacity: 1.0
+plastic_rotor:
+  name: Glass-filled nylon
+  color: "#E8E6E0"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+brass_screw:
+  name: Brass screw
+  color: "#C9A34E"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+housing_plastic_blue:
+  name: Plastic housing (polyester)
+  color: "#2F5FA8"
+  roughness: 0.55
+  metalness: 0.0
+  opacity: 1.0
+silicone_oring:
+  name: Silicone O-ring
+  color: "#B33A2E"
+  roughness: 0.8
+  metalness: 0.0
+  opacity: 1.0
+ferrite_nizn:
+  name: NiZn ferrite
+  color: "#3A3836"
+  roughness: 0.8
+  metalness: 0.0
+  opacity: 1.0
+enamelled_copper:
+  name: Enamelled copper wire (winding)
+  color: "#B8642E"
+  roughness: 0.35
+  metalness: 0.9
+  opacity: 1.0
+steel_cap_plain:
+  name: Tinned steel end cap
+  color: "#B9BCC0"
+  roughness: 0.35
+  metalness: 1.0
+  opacity: 1.0
+coating_green:
+  name: Epoxy coating (green)
+  color: "#5E8F64"
+  roughness: 0.5
+  metalness: 0.0
+  opacity: 1.0
+paint_yellow:
+  name: Colour-code paint (yellow)
+  color: "#E3C21E"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+paint_violet:
+  name: Colour-code paint (violet)
+  color: "#7A3FA8"
+  roughness: 0.6
+  metalness: 0.0
+  opacity: 1.0
+paint_silver:
+  name: Colour-code paint (silver)
+  color: "#C8CCD2"
+  roughness: 0.4
+  metalness: 0.6
+  opacity: 1.0

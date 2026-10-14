@@ -1,0 +1,16 @@
+# environments and caches
+.venv/
+node_modules/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# generated (rebuild with `make export` / `make screenshots`)
+viewer/dist/
+viewer/test-results/
+.test-output/
+build/models/*.step
+
+# local notes and reference material (not for publishing)
+.claude/
+Book/

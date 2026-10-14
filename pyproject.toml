@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["geometry", "geometry.core", "geometry.components"]
+
+[project]
+name = "cutaway"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["build123d>=0.13", "trimesh>=4", "numpy", "pyyaml", "pytest", "matplotlib", "shapely", "networkx", "scipy", "rtree"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

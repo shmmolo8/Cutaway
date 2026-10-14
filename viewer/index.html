@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cutaway — inside electronic components</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="topbar">
+        <div class="brand">Cutaway</div>
+        <div class="menu-wrap">
+          <button id="menu-btn" class="menu-btn" aria-haspopup="true" aria-expanded="false">
+            <span id="title" class="title"></span><span class="caret" aria-hidden="true">▾</span>
+          </button>
+          <nav id="menu" class="menu" aria-label="Components" hidden></nav>
+        </div>
+        <div id="variant-badge" class="badge"></div>
+        <button id="theme-btn" class="theme-btn" aria-label="Toggle light / dark theme"></button>
+      </header>
+      <aside id="layers" class="panel" aria-label="Layers"></aside>
+      <main id="viewport"><div id="tip" class="tip" hidden></div><div id="physics-hud" class="hud" hidden></div></main>
+      <section id="info" class="panel card" hidden></section>
+      <div id="gui"></div>
+      <div id="status" class="status">Loading…</div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
